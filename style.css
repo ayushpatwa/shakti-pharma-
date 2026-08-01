@@ -1794,6 +1794,7 @@ footer {
   /* Navigation Bar Adjustments */
   .nav-container {
     flex-direction: row !important;
+    flex-wrap: wrap !important;
     justify-content: space-between !important;
     align-items: center !important;
     padding: 0.75rem 1.25rem !important;
@@ -1825,6 +1826,7 @@ footer {
   }
 
   nav {
+    display: block !important;
     width: 100%;
     order: 4;
     max-height: 0;
@@ -1837,6 +1839,10 @@ footer {
   nav.active-nav {
     max-height: 300px;
     border-top: 1px solid var(--border-color);
+  }
+
+  .view-section {
+    padding: 1.5rem 1rem !important;
   }
 
   .nav-links {
@@ -1925,6 +1931,13 @@ footer {
     font-size: 0.85rem !important;
   }
 
+  .category-list li {
+    flex: 0 0 auto !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   /* Product Details Modal stack layout */
   .product-detail-modal {
     max-height: 95vh;
@@ -1970,6 +1983,20 @@ footer {
 
 /* Dual Column Product Feed for compact mobile display */
 @media (max-width: 580px) {
+  .catalog-search-bar {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  #sort-product-select {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .search-input {
+    font-size: 0.85rem !important;
+  }
+
   .products-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.85rem !important;
