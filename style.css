@@ -2017,6 +2017,9 @@ footer {
   .product-info {
     padding: 0.85rem !important;
     gap: 0.35rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
   }
 
   .product-title {
@@ -2026,6 +2029,7 @@ footer {
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .product-desc {
@@ -2042,6 +2046,7 @@ footer {
     gap: 0.5rem !important;
     border-top: none !important;
     padding-top: 0 !important;
+    margin-top: auto !important; /* Push buttons to the absolute bottom of equal height grid cards */
   }
 
   .btn-add-to-cart {
@@ -2054,6 +2059,7 @@ footer {
   .product-price {
     font-size: 1.05rem !important;
     text-align: center !important;
+    margin-bottom: 0.25rem !important;
   }
   
   .product-badge {
