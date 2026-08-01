@@ -1995,16 +1995,13 @@ footer {
 /* Dual Column Product Feed for compact mobile display */
 @media (max-width: 580px) {
   .catalog-layout {
-    max-width: 420px !important;
     width: 100% !important;
     margin: 0 !important;
-    margin-right: auto !important;
   }
 
   .filter-sidebar {
     max-width: 100% !important;
     margin: 0 !important;
-    margin-right: auto !important;
   }
 
   .catalog-search-bar {
@@ -2024,14 +2021,13 @@ footer {
   .products-grid {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
+    width: 100% !important;
   }
 
   .product-card {
     border-radius: var(--radius-md) !important;
-    max-width: 420px !important;
     width: 100% !important;
     margin: 0 !important;
-    margin-right: auto !important;
   }
 
   .product-img-wrapper {
