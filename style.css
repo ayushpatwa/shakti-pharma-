@@ -1986,6 +1986,17 @@ footer {
 
 /* Dual Column Product Feed for compact mobile display */
 @media (max-width: 580px) {
+  .catalog-layout {
+    max-width: 420px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .filter-sidebar {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
   .catalog-search-bar {
     flex-direction: column !important;
     gap: 0.75rem !important;
