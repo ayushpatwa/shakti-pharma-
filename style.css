@@ -2010,8 +2010,14 @@ footer {
   }
 
   .product-img-wrapper {
-    height: 180px !important;
-    padding: 1rem !important;
+    height: 120px !important;
+    padding: 0.5rem !important;
+  }
+
+  .product-svg {
+    max-height: 70% !important;
+    max-width: 70% !important;
+    object-fit: contain !important;
   }
 
   .product-info {
