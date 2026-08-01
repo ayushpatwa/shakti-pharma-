@@ -1890,6 +1890,14 @@ footer {
     margin-bottom: 3rem !important;
   }
 
+  .section-header {
+    text-align: left !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    margin-bottom: 2rem !important;
+  }
+
   .section-title {
     font-size: 1.75rem !important;
   }
