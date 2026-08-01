@@ -872,6 +872,12 @@ function renderProductsStore() {
     btn.addEventListener('click', (e) => {
       storeActiveCategory = btn.getAttribute('data-category');
       renderProductsStore();
+      
+      // Collapse sidebar on selection (mobile only)
+      const sidebar = document.querySelector('.filter-sidebar');
+      if (sidebar) {
+        sidebar.classList.remove('expanded');
+      }
     });
   });
 
@@ -1768,6 +1774,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
       if (!e.target.closest('#main-header')) {
         navElement.classList.remove('active-nav');
+      }
+    });
+  }
+
+  // Toggle category sidebar on mobile
+  const sidebar = document.querySelector('.filter-sidebar');
+  if (sidebar) {
+    sidebar.addEventListener('click', (e) => {
+      // Toggle only on mobile viewports when clicking outside the actual category buttons
+      if (window.innerWidth <= 768 && !e.target.closest('.category-list')) {
+        sidebar.classList.toggle('expanded');
       }
     });
   }

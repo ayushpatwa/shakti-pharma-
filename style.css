@@ -1900,6 +1900,62 @@ footer {
     gap: 1rem !important;
   }
 
+  /* Collapsible Category Filter Sidebar on Mobile */
+  .filter-sidebar {
+    padding: 0.75rem 1rem !important;
+    background: var(--white) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 1.25rem !important;
+    cursor: pointer;
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .sidebar-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: none !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .sidebar-title::after {
+    content: '▼';
+    font-size: 0.8rem;
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+  }
+
+  .filter-sidebar.expanded .sidebar-title::after {
+    transform: rotate(180deg);
+  }
+
+  .category-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.35s ease;
+    margin-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    list-style: none !important;
+    padding-left: 0 !important;
+  }
+
+  .filter-sidebar.expanded .category-list {
+    max-height: 400px;
+    margin-top: 1rem !important;
+    overflow-y: auto;
+  }
+
+  .category-btn {
+    width: 100% !important;
+    text-align: left !important;
+  }
+
   /* Product Details Modal stack layout */
   .product-detail-modal {
     max-height: 95vh;
