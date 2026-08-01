@@ -1875,6 +1875,56 @@ footer {
     height: 220px !important;
   }
 
+  /* History legacy section compact */
+  .history-section {
+    padding: 2rem 1.25rem !important;
+    margin-bottom: 3rem !important;
+  }
+
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+
+  /* Admin forms layout */
+  .card-row {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Swipe Scrollable Category Filter */
+  .filter-sidebar {
+    padding: 0.75rem 1rem !important;
+    margin-bottom: 1.25rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .filter-sidebar h3 {
+    display: none !important; /* Hide label, swipe is intuitive */
+  }
+
+  .category-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .category-list::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Webkit */
+  }
+
+  .category-btn {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    padding: 0.45rem 0.9rem !important;
+    font-size: 0.85rem !important;
+  }
+
   /* Product Details Modal stack layout */
   .product-detail-modal {
     max-height: 95vh;
@@ -1960,5 +2010,107 @@ footer {
     padding: 0.2rem 0.4rem !important;
     font-size: 0.6rem !important;
   }
+
+  /* Compact Cart Cards on narrow screens */
+  .cart-item-card {
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    padding: 0.85rem !important;
+    position: relative;
+  }
+
+  .cart-item-img {
+    width: 55px !important;
+    height: 55px !important;
+    padding: 0.25rem !important;
+  }
+
+  .cart-item-details {
+    flex: 1 1 calc(100% - 75px) !important;
+  }
+
+  .cart-item-qty {
+    margin-left: 65px !important;
+    flex: 0 0 auto !important;
+    padding: 0.15rem 0.4rem !important;
+  }
+
+  .cart-item-card > div[style*="text-align:right"] {
+    margin-left: auto !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* Extremely Small Viewports (iPhone SE, etc.) */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  .brand-name {
+    font-size: 1.15rem !important;
+  }
+
+  .brand-subtitle {
+    display: none !important; /* Hide subtitle to guarantee single-row header fit */
+  }
+
+  .logo-img {
+    height: 34px !important;
+  }
+
+  .logo-wrapper {
+    gap: 0.5rem !important;
+  }
+
+  .nav-actions {
+    gap: 0.45rem !important;
+    margin-right: 0.15rem !important;
+  }
+
+  .mobile-menu-toggle {
+    padding: 0.2rem !important;
+  }
+
+  /* Auth forms compact wrapper padding */
+  .auth-container {
+    padding: 1.5rem !important;
+    margin: 1rem auto !important;
+    width: 94% !important;
+  }
+
+  /* Payment Modal Checkout container fixes */
+  .payment-modal {
+    width: 94% !important;
+    margin: 0 auto;
+  }
+
+  .payment-body {
+    padding: 1.25rem !important;
+  }
+
+  .payment-header {
+    padding: 1rem 1.25rem !important;
+  }
+
+  /* Toast notification container aligned to bottom center */
+  .toast-container {
+    bottom: 1rem !important;
+    right: 3% !important;
+    left: 3% !important;
+    width: 94% !important;
+  }
+
+  .toast {
+    width: 100% !important;
+    padding: 0.85rem 1.25rem !important;
+    font-size: 0.85rem !important;
+    transform: translateY(120%);
+    animation: slideInUp 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  }
+}
+
+@keyframes slideInUp {
+  to { transform: translateY(0); }
 }
 
