@@ -853,8 +853,11 @@ main {
 }
 
 .product-svg {
-  width: 100px;
+  max-width: 85%;
+  max-height: 85%;
+  width: auto;
   height: auto;
+  object-fit: contain;
   filter: drop-shadow(0 8px 16px rgba(18, 55, 42, 0.15));
   transition: var(--transition-smooth);
 }
@@ -2029,8 +2032,28 @@ footer {
     display: none !important; /* Hide description text in 2-column mobile catalog to avoid clutter */
   }
 
+  .product-ingredients-preview {
+    display: none !important; /* Hide herbs list inside mobile grid to keep cards compact */
+  }
+
+  .product-meta {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  .btn-add-to-cart {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
   .product-price {
     font-size: 1.05rem !important;
+    text-align: center !important;
   }
   
   .product-badge {

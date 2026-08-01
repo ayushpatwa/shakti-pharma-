@@ -923,7 +923,7 @@ function renderProductsStore() {
       <div class="product-info">
         <h3 class="product-title detail-trigger" data-id="${prod.id}" style="cursor:pointer; transition: var(--transition-fast);">${prod.title}</h3>
         <p class="product-desc detail-trigger" data-id="${prod.id}" style="cursor:pointer;" title="${prod.description}">${prod.description}</p>
-        <div style="font-size:0.75rem; color:var(--text-light); line-height:1.4;">
+        <div class="product-ingredients-preview" style="font-size:0.75rem; color:var(--text-light); line-height:1.4;">
           <strong style="color:var(--primary);">Active Herbs:</strong> ${prod.ingredients}
         </div>
         <div class="product-meta">
