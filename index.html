@@ -574,6 +574,20 @@
                   </div>
                 </div>
 
+                <!-- Product Quantity Variants Section -->
+                <div class="form-group" style="background: rgba(18, 55, 42, 0.01); border: 1px dashed var(--border-color); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+                  <strong style="font-size: 0.9rem; color: var(--primary); margin-bottom: 0.75rem; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Quantity / Bottle Size Options (Optional)</strong>
+                  <div id="form-variants-container" style="display:flex; flex-direction:column; gap:0.6rem; margin-bottom:0.75rem;">
+                    <!-- Appended rows will go here -->
+                  </div>
+                  <button type="button" class="btn-secondary" id="btn-add-variant-row" style="padding:0.4rem 0.8rem; font-size:0.8rem; border-style:dashed;">
+                    + Add Size Option (e.g. 100ml, 200ml, 450ml)
+                  </button>
+                  <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem; margin-bottom: 0;">
+                    If variants are added, they will define the selectable packaging sizes (and prices) for customers. Leave empty if the product only has a single quantity and uses the base price above.
+                  </p>
+                </div>
+
                 <div class="form-group">
                   <label class="form-label">Description / Uses</label>
                   <textarea id="form-description" class="form-control" rows="3" placeholder="Describe the therapeutic actions, indications, and recommended dosage..." required></textarea>
@@ -840,6 +854,14 @@
             </div>
             
             <p id="detail-desc" class="detail-description">Description goes here...</p>
+
+            <!-- Quantity Option selector (Hidden by default, shown if variants exist) -->
+            <div id="detail-size-options-wrapper" class="detail-meta-section" style="display:none; border-top: 1px dashed var(--border-color); padding-top:0.6rem;">
+              <strong style="color:var(--primary); display:block; margin-bottom:0.5rem;">Select Bottle Size / Quantity:</strong>
+              <div id="detail-size-buttons-container" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <!-- Populated dynamically via JS: size selectors -->
+              </div>
+            </div>
             
             <div class="detail-meta-section">
               <strong style="color:var(--primary);">Therapeutic Herbs:</strong>

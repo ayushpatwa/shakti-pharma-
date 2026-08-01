@@ -420,12 +420,20 @@ const Store = {
     this.saveCart();
   },
 
-  addToCart(productId, qty = 1, showNotification = true) {
-    const existing = this.cart.find(item => item.productId === productId);
+  addToCart(productId, qty = 1, showNotification = true, selectedSize = null) {
+    const product = this.products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Default to first variant if size not specified but variants exist
+    if (!selectedSize && product.variants && product.variants.length > 0) {
+      selectedSize = product.variants[0].size;
+    }
+
+    const existing = this.cart.find(item => item.productId === productId && item.selectedSize === selectedSize);
     if (existing) {
       existing.qty += qty;
     } else {
-      this.cart.push({ productId, qty });
+      this.cart.push({ productId, qty, selectedSize });
     }
     this.saveCart();
     if (showNotification) {
@@ -433,8 +441,8 @@ const Store = {
     }
   },
 
-  updateCartQty(productId, qtyChange) {
-    const existingIndex = this.cart.findIndex(item => item.productId === productId);
+  updateCartQty(productId, selectedSize, qtyChange) {
+    const existingIndex = this.cart.findIndex(item => item.productId === productId && item.selectedSize === selectedSize);
     if (existingIndex !== -1) {
       this.cart[existingIndex].qty += qtyChange;
       if (this.cart[existingIndex].qty <= 0) {
@@ -992,8 +1000,15 @@ function renderCartView() {
     const product = Store.products.find(p => p.id === item.productId);
     if (!product) return '';
     
-    const cost = product.price * item.qty;
+    let activePrice = product.price;
+    if (item.selectedSize && product.variants && product.variants.length > 0) {
+      const match = product.variants.find(v => v.size === item.selectedSize);
+      if (match) activePrice = match.price;
+    }
+    const cost = activePrice * item.qty;
     subtotal += cost;
+
+    const sizeParam = item.selectedSize ? `'${item.selectedSize}'` : 'null';
 
     return `
       <div class="cart-item-card">
@@ -1001,13 +1016,13 @@ function renderCartView() {
           <img src="${product.image}" alt="${product.title}" style="height: 54px; width: auto;">
         </div>
         <div class="cart-item-details">
-          <h4 class="cart-item-title">${product.title}</h4>
-          <span class="cart-item-price">₹${product.price} each</span>
+          <h4 class="cart-item-title">${product.title} ${item.selectedSize ? `<span style="font-size:0.8rem; color:var(--accent); font-weight:600; margin-left:0.4rem;">(${item.selectedSize})</span>` : ''}</h4>
+          <span class="cart-item-price">₹${activePrice} each</span>
         </div>
         <div class="cart-item-qty">
-          <button class="qty-btn" onclick="Store.updateCartQty('${product.id}', -1)">-</button>
+          <button class="qty-btn" onclick="Store.updateCartQty('${product.id}', ${sizeParam}, -1)">-</button>
           <span style="font-weight:600; min-width:18px; text-align:center; font-size:0.9rem;">${item.qty}</span>
-          <button class="qty-btn" onclick="Store.updateCartQty('${product.id}', 1)">+</button>
+          <button class="qty-btn" onclick="Store.updateCartQty('${product.id}', ${sizeParam}, 1)">+</button>
         </div>
         <div style="text-align:right; min-width:80px; font-weight:700; color:var(--primary);">
           ₹${cost}
@@ -1190,10 +1205,15 @@ function finalizeTransaction(paymentMethod) {
   // Calculate items purchased detail logs
   const orderItemsList = Store.cart.map(item => {
     const product = Store.products.find(p => p.id === item.productId);
+    let activePrice = product.price;
+    if (item.selectedSize && product.variants && product.variants.length > 0) {
+      const match = product.variants.find(v => v.size === item.selectedSize);
+      if (match) activePrice = match.price;
+    }
     return {
       productId: item.productId,
-      title: product.title,
-      price: product.price,
+      title: product.title + (item.selectedSize ? ` (${item.selectedSize})` : ''),
+      price: activePrice,
       qty: item.qty
     };
   });
@@ -1238,6 +1258,7 @@ function finalizeTransaction(paymentMethod) {
 // --- Interactive Product Detail Gallery Modal ---
 let activeDetailQty = 1;
 let activeDetailProductId = null;
+let activeDetailSize = null;
 
 window.openProductDetailModal = function(productId) {
   const prod = Store.products.find(p => p.id === productId);
@@ -1245,6 +1266,7 @@ window.openProductDetailModal = function(productId) {
 
   activeDetailProductId = productId;
   activeDetailQty = 1;
+  activeDetailSize = null;
 
   // Open modal visual wrapper
   const overlay = document.getElementById('product-detail-modal-overlay');
@@ -1253,11 +1275,45 @@ window.openProductDetailModal = function(productId) {
   // Populate basic text properties
   document.getElementById('detail-title').innerText = prod.title;
   document.getElementById('detail-category').innerText = prod.category;
-  document.getElementById('detail-price').innerText = `₹${prod.price}.00`;
   document.getElementById('detail-desc').innerText = prod.description;
   document.getElementById('detail-ingredients').innerText = prod.ingredients;
   document.getElementById('detail-dosage').innerText = prod.dosage || "Take 1 to 2 teaspoonfuls (5-10 ml) twice daily after meals, or as directed by a physician.";
   document.getElementById('detail-qty-value').innerText = activeDetailQty;
+
+  // Setup size variants selector
+  const sizeOptionsWrapper = document.getElementById('detail-size-options-wrapper');
+  const sizeButtonsContainer = document.getElementById('detail-size-buttons-container');
+
+  if (prod.variants && prod.variants.length > 0) {
+    sizeOptionsWrapper.style.display = 'block';
+    activeDetailSize = prod.variants[0].size;
+    const activeDetailPrice = prod.variants[0].price;
+    document.getElementById('detail-price').innerText = `₹${activeDetailPrice}.00`;
+
+    sizeButtonsContainer.innerHTML = prod.variants.map((v, idx) => {
+      const activeClass = idx === 0 ? 'active-size' : '';
+      return `
+        <button type="button" class="btn-secondary size-option-btn ${activeClass}" data-size="${v.size}" data-price="${v.price}" style="padding:0.4rem 0.8rem; font-size:0.85rem; border-radius:var(--radius-sm);">
+          ${v.size} (₹${v.price})
+        </button>
+      `;
+    }).join('');
+
+    // Attach click listeners to size option buttons
+    document.querySelectorAll('.size-option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-option-btn').forEach(b => b.classList.remove('active-size'));
+        btn.classList.add('active-size');
+        activeDetailSize = btn.getAttribute('data-size');
+        const selectedPrice = btn.getAttribute('data-price');
+        document.getElementById('detail-price').innerText = `₹${selectedPrice}.00`;
+      });
+    });
+  } else {
+    sizeOptionsWrapper.style.display = 'none';
+    activeDetailSize = null;
+    document.getElementById('detail-price').innerText = `₹${prod.price}.00`;
+  }
 
   // Setup gallery main image and thumbnails
   const mainImgEl = document.getElementById('detail-main-img');
@@ -1340,7 +1396,7 @@ function initProductDetailModalController() {
     addCartBtn.addEventListener('click', () => {
       if (activeDetailProductId) {
         // Add multiple quantities
-        Store.addToCart(activeDetailProductId, activeDetailQty, true);
+        Store.addToCart(activeDetailProductId, activeDetailQty, true, activeDetailSize);
         closeProductDetailModal();
       }
     });
@@ -1488,6 +1544,15 @@ window.openEditProductForm = function(productId) {
   document.getElementById('form-ingredients').value = prod.ingredients;
   document.getElementById('form-status').value = prod.active.toString();
   
+  // Clear and load variants container
+  const container = document.getElementById('form-variants-container');
+  if (container) container.innerHTML = '';
+  if (prod.variants && prod.variants.length > 0) {
+    prod.variants.forEach(v => {
+      addVariantRow(v.size, v.price);
+    });
+  }
+
   // Initialize temporary memory arrays for edit mode
   window.tempUploadedImages = [null, null, null, null, null];
 
@@ -1535,6 +1600,30 @@ window.deleteProductFromDB = function(productId) {
   }
 };
 
+window.addVariantRow = function(size = '', price = '') {
+  const container = document.getElementById('form-variants-container');
+  if (!container) return;
+
+  const row = document.createElement('div');
+  row.className = 'variant-row';
+  row.style.display = 'flex';
+  row.style.gap = '0.5rem';
+  row.style.alignItems = 'center';
+  row.style.marginBottom = '0.5rem';
+  row.innerHTML = `
+    <input type="text" placeholder="Size (e.g. 100ml)" class="form-control form-variant-size" value="${size}" style="flex:1; padding:0.4rem;" required>
+    <span style="font-size:0.8rem; color:var(--text-light);">Price (₹):</span>
+    <input type="number" placeholder="Price" class="form-control form-variant-price" value="${price}" style="flex:1; padding:0.4rem;" required min="1">
+    <button type="button" class="btn-icon btn-remove-variant" style="padding:0.4rem; color:var(--error);" title="Remove Option">✕</button>
+  `;
+
+  row.querySelector('.btn-remove-variant').onclick = () => {
+    row.remove();
+  };
+
+  container.appendChild(row);
+};
+
 // Form Add/Edit Submission
 function initAdminFormController() {
   const openFormBtn = document.getElementById('admin-btn-new-product');
@@ -1568,11 +1657,23 @@ function initAdminFormController() {
     }
   }
 
+  // Bind Add Variant Option button
+  const addVariantBtn = document.getElementById('btn-add-variant-row');
+  if (addVariantBtn) {
+    addVariantBtn.onclick = () => {
+      addVariantRow();
+    };
+  }
+
   openFormBtn.onclick = () => {
     formPanel.style.display = 'block';
     formEl.reset();
     document.getElementById('admin-form-title').innerText = "Add New Product";
     document.getElementById('form-product-id').value = '';
+    
+    // Clear variants
+    const container = document.getElementById('form-variants-container');
+    if (container) container.innerHTML = '';
     
     // Reset temporary files memory
     window.tempUploadedImages = [null, null, null, null, null];
@@ -1583,6 +1684,8 @@ function initAdminFormController() {
   cancelFormBtn.onclick = () => {
     formPanel.style.display = 'none';
     formEl.reset();
+    const container = document.getElementById('form-variants-container');
+    if (container) container.innerHTML = '';
     window.tempUploadedImages = [null, null, null, null, null];
   };
 
@@ -1619,6 +1722,17 @@ function initAdminFormController() {
       return generateProductSVG(svgColor, title.substring(0,8).toUpperCase(), 'cross');
     };
 
+    // Collect and parse variant rows
+    const variantRows = document.querySelectorAll('.variant-row');
+    const variants = [];
+    variantRows.forEach(row => {
+      const sizeVal = row.querySelector('.form-variant-size').value.trim();
+      const priceVal = parseInt(row.querySelector('.form-variant-price').value);
+      if (sizeVal && priceVal) {
+        variants.push({ size: sizeVal, price: priceVal });
+      }
+    });
+
     if (pid) {
       // Modify matching product in array
       const prod = Store.products.find(p => p.id === pid);
@@ -1629,6 +1743,7 @@ function initAdminFormController() {
         prod.description = description;
         prod.ingredients = ingredients;
         prod.active = active;
+        prod.variants = variants;
         
         // Handle images array and fallback
         if (resolvedImages.length > 0) {
@@ -1662,7 +1777,8 @@ function initAdminFormController() {
         image: firstImg,
         images: resolvedImages.length > 0 ? resolvedImages : [firstImg],
         dosage: "Take 1 to 2 teaspoonfuls (5-10 ml) twice daily after meals, or as directed by a physician.",
-        active
+        active,
+        variants
       };
       
       Store.products.push(newProd);

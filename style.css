@@ -1792,6 +1792,21 @@ footer {
   padding: 0.65rem;
 }
 
+.size-option-btn {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.size-option-btn:hover,
+.size-option-btn.active-size {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-color: var(--primary) !important;
+}
+
 /* ADDITIONAL MOBILE AND TOUCH OPTIMIZATIONS */
 @media (max-width: 768px) {
   /* Navigation Bar Adjustments */
