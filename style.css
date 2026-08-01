@@ -2007,6 +2007,9 @@ footer {
 
   .product-card {
     border-radius: var(--radius-md) !important;
+    max-width: 420px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
   }
 
   .product-img-wrapper {
