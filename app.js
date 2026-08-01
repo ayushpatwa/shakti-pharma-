@@ -90,9 +90,7 @@ const defaultProducts = [
     images: [
       "images/asmarin 3/a7c5c0ec-663f-4f8a-9d98-b2d6c6d4aa08.png",
       "images/asmarin 3/a231b689-74ae-4ef8-aa2a-d7a6830f9f31.png",
-      "images/asmarin 3/e3a3d89a-4144-4db5-abb8-0a19b51dbb12.png",
-      generateProductSVG('#0d9488', 'ASMARIN', 'lungs'),
-      generateProductSVG('#0d9488', 'ASMARIN', 'cross')
+      "images/asmarin 3/e3a3d89a-4144-4db5-abb8-0a19b51dbb12.png"
     ],
     dosage: "5 ml to 10 ml (1 to 2 teaspoonfuls) with warm water twice daily, or as directed by a physician.",
     active: true
@@ -216,9 +214,7 @@ const defaultProducts = [
     images: [
       "images/ayush kwath 3/39c11c28-bded-44ee-90c3-75c4a6e7eab0.png",
       "images/ayush kwath 3/ea3f6ad2-b534-4324-8f1d-5723385551ae.png",
-      "images/ayush kwath 3/ff978da8-ec39-43a2-82a7-66fb8b7b2c7a.png",
-      generateProductSVG('#0d9488', 'AYUSH', 'leaf'),
-      generateProductSVG('#0d9488', 'AYUSH', 'cross')
+      "images/ayush kwath 3/ff978da8-ec39-43a2-82a7-66fb8b7b2c7a.png"
     ],
     dosage: "Take 3g powder, boil with 150ml of water for 3-5 mins, filter and consume hot like tea once or twice daily. Add honey or lemon to taste.",
     active: true
@@ -288,9 +284,7 @@ const defaultProducts = [
     images: [
       "images/rakto 3/a4d410e5-5931-4073-9f70-3c1a25b79020.png",
       "images/rakto 3/1d09d7fb-2d12-41d2-9a16-e80b24b00b3c.png",
-      "images/rakto 3/c818e1ec-2677-4124-bc24-45bcdebfb2b8.png",
-      generateProductSVG('#b91c1c', 'RAKTO', 'leaf'),
-      generateProductSVG('#b91c1c', 'RAKTO', 'cross')
+      "images/rakto 3/c818e1ec-2677-4124-bc24-45bcdebfb2b8.png"
     ],
     dosage: "Adults: 10ml (2 teaspoonfuls) daily in the morning with half a glass of warm water. Children: 5ml daily.",
     active: true
@@ -306,9 +300,7 @@ const defaultProducts = [
     images: [
       "images/vomitex/fca5280f-8a81-4343-b171-057f5ae84b09.png",
       "images/vomitex/a5e663ae-7cdf-440f-9bac-5d11775da764.png",
-      "images/vomitex/eb27d15e-dff3-463c-9fc5-758529f0fcbe.png",
-      generateProductSVG('#ea580c', 'VOMITEX', 'baby'),
-      generateProductSVG('#ea580c', 'VOMITEX', 'cross')
+      "images/vomitex/eb27d15e-dff3-463c-9fc5-758529f0fcbe.png"
     ],
     dosage: "Infants: 5-10 drops; Children: 10-20 drops, administered with lukewarm water 3 to 4 times a day or when nausea occurs.",
     active: true
