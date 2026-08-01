@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Shakti Pharma | Premium Ayurvedic Medicines</title>
+  <meta name="description" content="Manufacturers of premium Ayurvedic medicines since 1974 in Kasganj, UP. Explore our range of herbal tonics, cough syrups, and natural remedies.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Leaf Decorations Background -->
+  <div class="decorations">
+    <!-- SVG Leaf 1 -->
+    <svg class="leaf leaf-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10C50 10 20 40 20 65C20 81.5 33.5 90 50 90C66.5 90 80 81.5 80 65C80 40 50 10 50 10Z" fill="#436850" />
+      <path d="M50 10V90" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+      <path d="M50 35C45 40 40 42 32 45" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+      <path d="M50 48C55 53 60 55 68 58" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+      <path d="M50 60C45 65 40 67 32 70" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+      <path d="M50 72C55 77 60 79 68 82" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <!-- SVG Leaf 2 -->
+    <svg class="leaf leaf-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5C25 25 25 65 50 95C75 65 75 25 50 5Z" fill="#ad8b3a" />
+      <path d="M50 5V95" stroke="#fbfbfa" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M50 25C40 32 35 38 28 42" stroke="#fbfbfa" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M50 40C60 47 65 53 72 57" stroke="#fbfbfa" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M50 55C40 62 35 68 28 72" stroke="#fbfbfa" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M50 70C60 77 65 83 72 87" stroke="#fbfbfa" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <!-- SVG Leaf 3 -->
+    <svg class="leaf leaf-3" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10C50 10 20 40 20 65C20 81.5 33.5 90 50 90C66.5 90 80 81.5 80 65C80 40 50 10 50 10Z" fill="#12372a" />
+      <path d="M50 10V90" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+      <path d="M50 35C45 40 40 42 32 45" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+      <path d="M50 48C55 53 60 55 68 58" stroke="#fbfbfa" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Header -->
+  <header id="main-header">
+    <div class="nav-container">
+      <a href="#home" class="logo-wrapper">
+        <img src="images/logo.gif" alt="Shakti Pharma Logo" class="logo-img" style="height: 44px; width: auto; border-radius: var(--radius-sm); border: 1px solid rgba(67, 104, 80, 0.15);">
+        <div class="brand-info">
+          <span class="brand-name">Shakti Pharma</span>
+          <span class="brand-subtitle">Kasganj • Estd 1974</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation links -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active" id="link-home">Home</a></li>
+          <li><a href="#products" class="nav-link" id="link-products">Ayurvedic Store</a></li>
+          <li><a href="#home#timeline" class="nav-link" id="link-history">Our Legacy</a></li>
+          <li><a href="#home#contact" class="nav-link" id="link-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Cart, Auth and Admin hooks -->
+      <div class="nav-actions">
+        <a href="#cart" class="btn-icon" id="cart-nav-btn" title="View Cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="badge" id="cart-count">0</span>
+        </a>
+
+        <!-- User Dropdown / Auth status button -->
+        <div id="auth-nav-container">
+          <!-- Populated dynamically via JS: Login btn OR Customer Profile dropdown -->
+          <a href="#login" class="btn-secondary" id="nav-login-btn">Login</a>
+        </div>
+
+        <!-- Admin Portal direct link (soft visual weight unless logged in as admin) -->
+        <a href="#admin" class="btn-primary" id="nav-admin-btn" style="display:none;">Admin Panel</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN PAGE PORTALS -->
+  <main>
+
+    <!-- 1. HOME VIEW -->
+    <section id="view-home" class="view-section active-view">
+      <!-- Hero Header -->
+      <div class="hero-section">
+        <div class="hero-text-content">
+          <span class="hero-tagline">Time-Tested Healing</span>
+          <h1 class="hero-title">Pure Ayurvedic Formulas Since 1974</h1>
+          <p class="hero-desc">
+            For over five decades, The Shakti Pharma has combined ancient Vedic wisdom with modern scientific verification. We manufacture premium patent Ayurvedic tonics and syrups, empowering you to live a balanced, healthy life.
+          </p>
+          <div class="hero-buttons">
+            <a href="#products" class="btn-primary">Explore Products</a>
+            <a href="#home#timeline" class="btn-secondary">Read Legacy</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-circle"></div>
+          <!-- Dynamic Slideshow using legacy photos -->
+          <div class="hero-slideshow-container">
+            <div class="hero-slide active-slide">
+              <img src="images/group/1e100237-1099-46b8-a033-f87eff050a12.png" alt="Shakti Pharma Ayurvedic Remedies">
+            </div>
+            <div class="hero-slide">
+              <img src="images/group/996c9887-ad24-4207-aefd-5b59f4ab47e3.png" alt="Shakti Pharma Laboratory Quality">
+            </div>
+            <div class="hero-slide">
+              <img src="images/group/9d4654d1-4bbd-4361-8e64-6e4d707bbee1.png" alt="Ayurvedic Restorative Medicines">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features grid -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3>Traditional Shastras</h3>
+          <p>Prepared meticulously following ancient Ayurvedic scriptures under experienced Vaidyas and Chemists.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <h3>Modern Lab Tests</h3>
+          <p>Every batch undergoes rigid laboratory tests ensuring quality, consistency, and chemical purity standards.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Safe & Effective</h3>
+          <p>100% natural, vegetarian compositions formulated for fast absorption with zero synthetic side effects.</p>
+        </div>
+      </div>
+
+      <!-- History timeline -->
+      <div class="history-section" id="timeline">
+        <div class="section-header">
+          <span class="section-subtitle">Our Journey</span>
+          <h2 class="section-title">The Legacy of Shakti Pharma</h2>
+          <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.5;">
+            Traced back to the mid-19th century as a dedicated group of manufacturing physicians, we have preserved herbal knowledge across generations.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-badge"></div>
+            <div class="timeline-year">Mid 19th Century</div>
+            <div class="timeline-card">
+              <h4>Foundations Laid</h4>
+              <p>A group of local Vaidyas and physicians in Uttar Pradesh began formulating customized herbal extracts for chronic ailments.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge"></div>
+            <div class="timeline-year">Early 20th Century</div>
+            <div class="timeline-card">
+              <h4>Arpi Chemical Industries</h4>
+              <p>The practice evolved into a structured pharmaceutical concern to supply patent medicines to wider regions of Northern India.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge"></div>
+            <div class="timeline-year">1974</div>
+            <div class="timeline-card">
+              <h4>Birth of The Shakti Pharma</h4>
+              <p>The firm was formally renamed as 'The Shakti Pharma' in Kasganj, setting up modernized manufacturing units for herbal syrups.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge"></div>
+            <div class="timeline-year">Today</div>
+            <div class="timeline-card">
+              <h4>Digital Herbal Store</h4>
+              <p>Delivering high-quality Ayurvedic patent medicines to clients and practitioners all over India with secure order processing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact details & form -->
+      <div class="contact-section" id="contact">
+        <div class="contact-info-panel">
+          <div class="section-header" style="text-align: left; margin: 0;">
+            <span class="section-subtitle">Reach Us</span>
+            <h2 class="section-title">We'd Love to Hear From You</h2>
+            <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+              Have questions about our Ayurvedic remedies, wholesale orders, or distribution franchises? Reach out directly.
+            </p>
+          </div>
+
+          <div class="contact-details-list">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h4>Head Office Address</h4>
+                <p>Railway Station Road, Kasganj - 207123,<br>Uttar Pradesh, India</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h4>Call / WhatsApp Inquiry</h4>
+                <p>+91 8043816522, +91 8047789335</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <h4>Email Address</h4>
+                <p>info@shaktipharma.in, support@shaktipharma.in</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="home-contact-form" onsubmit="event.preventDefault(); alert('Thank you for contacting us! Our team will get back to you shortly.'); this.reset();">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message/Inquiry</label>
+            <textarea class="form-control" rows="4" placeholder="Type your message details here..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- 2. PRODUCTS STORE VIEW -->
+    <section id="view-products" class="view-section">
+      <div class="section-header">
+        <span class="section-subtitle">Natural Catalog</span>
+        <h2 class="section-title">Ayurvedic Store</h2>
+        <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">
+          Premium patent remedies designed for women's health, respiratory support, liver rejuvenation, pediatric care, and overall body recovery.
+        </p>
+      </div>
+
+      <div class="catalog-layout">
+        <!-- Sidebar filters -->
+        <aside class="filter-sidebar">
+          <h3 class="sidebar-title">Categories</h3>
+          <ul class="category-list" id="category-filter-list">
+            <!-- Populated dynamically via JS -->
+          </ul>
+        </aside>
+
+        <!-- Product Grid Main section -->
+        <div class="catalog-main">
+          <div class="catalog-search-bar">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input type="text" class="search-input" id="search-product-input" placeholder="Search medicines by name, ingredients, or symptoms...">
+            </div>
+            <select class="form-control" id="sort-product-select" style="max-width: 200px;">
+              <option value="default">Default Sort</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="name-asc">Name: A-Z</option>
+            </select>
+          </div>
+
+          <div class="products-grid" id="catalog-products-grid">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 3. CUSTOMER LOGIN VIEW -->
+    <section id="view-login" class="view-section">
+      <div class="auth-container">
+        <div class="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Login to place orders, manage your cart, and track shipments.</p>
+        </div>
+        <form id="customer-login-form">
+          <div class="form-group">
+            <label class="form-label">Email Address or Username</label>
+            <input type="text" id="login-email" class="form-control" placeholder="Email address or username" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Login Account</button>
+        </form>
+        <div class="auth-footer">
+          Don't have an account? <a href="#register" class="auth-link">Register here</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 4. CUSTOMER REGISTER VIEW -->
+    <section id="view-register" class="view-section">
+      <div class="auth-container" style="max-width: 500px;">
+        <div class="auth-header">
+          <h2>Create Account</h2>
+          <p>Register to purchase Ayurvedic formulations directly from Kasganj.</p>
+        </div>
+        <form id="customer-register-form">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="Ayush Sharma" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="ayush@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="Choose a secure password" minlength="6" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Shipping Address</label>
+            <textarea id="reg-address" class="form-control" rows="3" placeholder="Enter full address details (Street, District, State, PIN)" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Create Account</button>
+        </form>
+        <div class="auth-footer">
+          Already have an account? <a href="#login" class="auth-link">Login here</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 5. SHOPPING CART VIEW -->
+    <section id="view-cart" class="view-section">
+      <div class="section-header">
+        <span class="section-subtitle">Your Selection</span>
+        <h2 class="section-title">Shopping Cart</h2>
+      </div>
+
+      <div id="cart-content-wrapper">
+        <!-- Loaded dynamically: cart layout OR empty state message -->
+      </div>
+    </section>
+
+
+    <!-- 6. CUSTOMER PROFILE VIEW -->
+    <section id="view-profile" class="view-section">
+      <div class="section-header" style="text-align: left; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--sage-light); padding-bottom: 1.5rem;">
+        <div>
+          <span class="section-subtitle">Dashboard</span>
+          <h2 class="section-title" id="profile-title-name">Customer Profile</h2>
+        </div>
+        <button class="btn-secondary" id="profile-logout-btn">Logout Account</button>
+      </div>
+
+      <div class="cart-page-layout" style="margin-top: 2rem;">
+        <!-- Left: Order History -->
+        <div>
+          <h3 class="brand-font" style="margin-bottom: 1.5rem; font-size: 1.5rem;">Your Order History</h3>
+          <div id="profile-orders-list">
+            <!-- Dynamically populated orders -->
+          </div>
+        </div>
+
+        <!-- Right: Shipping Info Box with Editor -->
+        <div class="cart-summary-panel" id="profile-info-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.25rem;">
+            <h3 class="brand-font" style="margin:0;">Account Information</h3>
+            <button class="btn-table-action" id="btn-edit-profile" title="Edit Profile Details">✏️</button>
+          </div>
+          
+          <!-- Read-only View -->
+          <div id="profile-view-mode" style="font-size: 0.95rem; line-height: 1.6; display:flex; flex-direction:column; gap:0.75rem;">
+            <div>
+              <strong style="color:var(--primary);">Registered Name:</strong>
+              <p id="profile-info-name"></p>
+            </div>
+            <div>
+              <strong style="color:var(--primary);">Email Address:</strong>
+              <p id="profile-info-email"></p>
+            </div>
+            <div>
+              <strong style="color:var(--primary);">Default Shipping Address:</strong>
+              <p id="profile-info-address" style="white-space: pre-line;"></p>
+            </div>
+          </div>
+
+          <!-- Edit Mode (Hidden by default) -->
+          <form id="profile-edit-form" style="display:none; flex-direction:column; gap:1rem;">
+            <div class="form-group" style="margin:0;">
+              <label class="form-label" style="font-size:0.75rem;">Registered Name</label>
+              <input type="text" id="edit-profile-name" class="form-control" required>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label class="form-label" style="font-size:0.75rem;">Shipping Address</label>
+              <textarea id="edit-profile-address" class="form-control" rows="3" required></textarea>
+            </div>
+            <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
+              <button type="button" class="btn-secondary" id="btn-cancel-profile-edit" style="padding:0.4rem 0.8rem; font-size:0.85rem;">Cancel</button>
+              <button type="submit" class="btn-primary" style="padding:0.4rem 0.8rem; font-size:0.85rem;">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 7. ADMIN DASHBOARD VIEW -->
+    <section id="view-admin" class="view-section">
+      <div class="section-header" style="text-align: left; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--sage-light); padding-bottom: 1.5rem;">
+        <div>
+          <span class="section-subtitle">Control Panel</span>
+          <h2 class="section-title">Admin Dashboard</h2>
+        </div>
+        <button class="btn-secondary" id="admin-logout-btn">Exit Admin Mode</button>
+      </div>
+
+      <div class="admin-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-nav">
+          <ul class="admin-nav-list">
+            <li>
+              <button class="admin-nav-btn active-admin-nav" id="admin-tab-overview">
+                <span>📊</span> Overview Stats
+              </button>
+            </li>
+            <li>
+              <button class="admin-nav-btn" id="admin-tab-products">
+                <span>🍃</span> Manage Products
+              </button>
+            </li>
+            <li>
+              <button class="admin-nav-btn" id="admin-tab-orders">
+                <span>📦</span> Customer Orders
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Main Content Portals -->
+        <div class="admin-main-viewport">
+          
+          <!-- Admin Panel A: Overview -->
+          <div class="admin-content-section active-admin-section" id="admin-section-overview">
+            <div class="admin-summary-grid">
+              <div class="admin-summary-card">
+                <h4>Total Seed Products</h4>
+                <div class="admin-summary-value" id="stat-total-products">0</div>
+              </div>
+              <div class="admin-summary-card">
+                <h4>Listed (Visible)</h4>
+                <div class="admin-summary-value" style="color:var(--success);" id="stat-listed-products">0</div>
+              </div>
+              <div class="admin-summary-card">
+                <h4>Unlisted (Hidden)</h4>
+                <div class="admin-summary-value" style="color:var(--error);" id="stat-unlisted-products">0</div>
+              </div>
+              <div class="admin-summary-card">
+                <h4>Total Orders Placed</h4>
+                <div class="admin-summary-value" id="stat-total-orders">0</div>
+              </div>
+            </div>
+
+            <div class="admin-card-panel" style="margin-top:0;">
+              <h3 class="brand-font" style="margin-bottom:1rem;">Welcome to the Shakti Pharma Admin Console</h3>
+              <p style="font-size:0.95rem; color:var(--text-light); line-height:1.6; margin-bottom:1rem;">
+                This workspace allows you to fully manage the Ayurvedic catalog. You can edit existing formulations, toggle their visibility (list/unlist) so customers cannot purchase them, add new products, and track real-time orders completed through the payment gateway simulation.
+              </p>
+              <div style="background:var(--sage-light); border-radius:var(--radius-sm); padding:1rem; border-left:4px solid var(--accent); font-size:0.85rem; line-height:1.5;">
+                <strong>Quick Tip:</strong> Any product unlisted here will be instantly removed from the "Ayurvedic Store" catalog view for general users. Relisting it restores it to the shop immediately. All state is persisted in your browser's <code>localStorage</code>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin Panel B: Manage Products -->
+          <div class="admin-content-section" id="admin-section-products">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+              <h3 class="brand-font">Product Management</h3>
+              <button class="btn-primary" id="admin-btn-new-product">+ Add New Product</button>
+            </div>
+
+            <!-- Products List Table -->
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product Name / Code</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th style="width:140px;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-product-table-body">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Product Form Panel (Hidden by default, overlays or shows up) -->
+            <div class="admin-card-panel" id="admin-product-form-panel" style="display:none;">
+              <h3 class="brand-font" id="admin-form-title" style="margin-bottom:1.5rem;">Add New Product</h3>
+              <form id="admin-product-form">
+                <input type="hidden" id="form-product-id">
+                
+                <div class="form-group">
+                  <label class="form-label">Product Title Name</label>
+                  <input type="text" id="form-title" class="form-control" placeholder="e.g. Asmarin Syrup" required>
+                </div>
+
+                <div class="card-row">
+                  <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select id="form-category" class="form-control" required>
+                      <option value="Women's Health">Women's Health</option>
+                      <option value="Respiratory Care">Respiratory Care</option>
+                      <option value="Restorative Tonics">Restorative Tonics</option>
+                      <option value="Liver Care">Liver Care</option>
+                      <option value="Pediatrics">Pediatrics</option>
+                      <option value="Cough & Cold">Cough & Cold</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Price (₹ INR)</label>
+                    <input type="number" id="form-price" class="form-control" min="1" placeholder="e.g. 145" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Description / Uses</label>
+                  <textarea id="form-description" class="form-control" rows="3" placeholder="Describe the therapeutic actions, indications, and recommended dosage..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Key Active Ingredients</label>
+                  <input type="text" id="form-ingredients" class="form-control" placeholder="e.g. Ashoka, Lodhra, Mulethi, Triphala" required>
+                </div>
+
+                <div class="form-group" style="background:rgba(18, 55, 42, 0.02); border:1px solid var(--border-color); padding:1rem; border-radius:var(--radius-sm); margin-bottom:1.5rem;">
+                  <strong style="font-size:0.9rem; color:var(--primary); margin-bottom:1rem; display:block; text-transform:uppercase; letter-spacing:0.5px;">Product Photo Gallery (Up to 5 Photos)</strong>
+                  
+                  <!-- Main Photo slot -->
+                  <div style="margin-bottom:1rem; border-bottom:1px dashed var(--border-color); padding-bottom:1rem;">
+                    <label class="form-label" style="font-size:0.75rem; margin-bottom:0.25rem;">1. Main Photo (Required)</label>
+                    <div style="display:flex; gap:1rem; align-items:center; margin-top:0.25rem;">
+                      <input type="file" id="form-image-file-0" class="form-control" accept="image/*" style="flex:1; padding:0.4rem;">
+                      <span style="font-size:0.8rem; color:var(--text-light);">or url:</span>
+                      <input type="text" id="form-image-url-0" class="form-control" placeholder="images/photo.jpg" style="flex:1.2; padding:0.4rem;">
+                    </div>
+                  </div>
+
+                  <!-- Extra Photo 1 slot -->
+                  <div style="margin-bottom:1rem; border-bottom:1px dashed var(--border-color); padding-bottom:1rem;">
+                    <label class="form-label" style="font-size:0.75rem; margin-bottom:0.25rem;">2. Extra Photo 1 (Optional)</label>
+                    <div style="display:flex; gap:1rem; align-items:center; margin-top:0.25rem;">
+                      <input type="file" id="form-image-file-1" class="form-control" accept="image/*" style="flex:1; padding:0.4rem;">
+                      <span style="font-size:0.8rem; color:var(--text-light);">or url:</span>
+                      <input type="text" id="form-image-url-1" class="form-control" placeholder="e.g. images/box_photo.jpg" style="flex:1.2; padding:0.4rem;">
+                    </div>
+                  </div>
+
+                  <!-- Extra Photo 2 slot -->
+                  <div style="margin-bottom:1rem; border-bottom:1px dashed var(--border-color); padding-bottom:1rem;">
+                    <label class="form-label" style="font-size:0.75rem; margin-bottom:0.25rem;">3. Extra Photo 2 (Optional)</label>
+                    <div style="display:flex; gap:1rem; align-items:center; margin-top:0.25rem;">
+                      <input type="file" id="form-image-file-2" class="form-control" accept="image/*" style="flex:1; padding:0.4rem;">
+                      <span style="font-size:0.8rem; color:var(--text-light);">or url:</span>
+                      <input type="text" id="form-image-url-2" class="form-control" placeholder="e.g. images/back_label.jpg" style="flex:1.2; padding:0.4rem;">
+                    </div>
+                  </div>
+
+                  <!-- Extra Photo 3 slot -->
+                  <div style="margin-bottom:1rem; border-bottom:1px dashed var(--border-color); padding-bottom:1rem;">
+                    <label class="form-label" style="font-size:0.75rem; margin-bottom:0.25rem;">4. Extra Photo 3 (Optional)</label>
+                    <div style="display:flex; gap:1rem; align-items:center; margin-top:0.25rem;">
+                      <input type="file" id="form-image-file-3" class="form-control" accept="image/*" style="flex:1; padding:0.4rem;">
+                      <span style="font-size:0.8rem; color:var(--text-light);">or url:</span>
+                      <input type="text" id="form-image-url-3" class="form-control" placeholder="e.g. images/another_view.jpg" style="flex:1.2; padding:0.4rem;">
+                    </div>
+                  </div>
+
+                  <!-- Extra Photo 4 slot -->
+                  <div>
+                    <label class="form-label" style="font-size:0.75rem; margin-bottom:0.25rem;">5. Extra Photo 4 (Optional)</label>
+                    <div style="display:flex; gap:1rem; align-items:center; margin-top:0.25rem;">
+                      <input type="file" id="form-image-file-4" class="form-control" accept="image/*" style="flex:1; padding:0.4rem;">
+                      <span style="font-size:0.8rem; color:var(--text-light);">or url:</span>
+                      <input type="text" id="form-image-url-4" class="form-control" placeholder="e.g. images/box_back.jpg" style="flex:1.2; padding:0.4rem;">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Visibility Status</label>
+                  <select id="form-status" class="form-control">
+                    <option value="true">Listed (Visible to Customers)</option>
+                    <option value="false">Unlisted (Hidden from Store)</option>
+                  </select>
+                </div>
+
+                <div style="display:flex; gap:1rem; justify-content:flex-end; margin-top:1.5rem;">
+                  <button type="button" class="btn-secondary" id="admin-form-cancel">Cancel</button>
+                  <button type="submit" class="btn-primary" id="admin-form-submit-btn">Save Product</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Admin Panel C: Customer Orders -->
+          <div class="admin-content-section" id="admin-section-orders">
+            <h3 class="brand-font" style="margin-bottom:1.5rem;">Customer Transactions Log</h3>
+            
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID / Date</th>
+                    <th>Customer Details</th>
+                    <th>Items Purchased</th>
+                    <th>Total Paid</th>
+                    <th>Payment Method</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-table-body">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MOCK PAYMENT GATEWAY INTERACTIVE MODAL OVERLAY -->
+  <div class="modal-overlay" id="payment-modal-overlay">
+    <div class="payment-modal">
+      <div class="payment-header">
+        <h3>Secure Checkout Gateway</h3>
+        <button class="btn-icon" style="color:var(--white); padding:0.25rem;" id="close-payment-modal" title="Cancel Payment">✕</button>
+      </div>
+      
+      <div class="payment-body">
+        
+        <!-- View 1: Form Selector -->
+        <div id="payment-input-container">
+          <div style="display:flex; justify-content:space-between; margin-bottom:1.25rem; font-size:0.9rem; border-bottom:1px dashed var(--border-color); padding-bottom:0.75rem;">
+            <span>Transaction Amount:</span>
+            <strong style="color:var(--primary); font-size:1.1rem;" id="payment-modal-amount">₹0.00</strong>
+          </div>
+
+          <div class="payment-tabs">
+            <button class="payment-tab-btn active-tab" data-target="panel-card">💳 Card</button>
+            <button class="payment-tab-btn" data-target="panel-upi">📱 UPI QR</button>
+            <button class="payment-tab-btn" data-target="panel-net">🏦 Net Banking</button>
+          </div>
+
+          <!-- Tab Panel A: Card -->
+          <div class="payment-panel active-panel" id="panel-card">
+            <form id="payment-form-card">
+              <div class="form-group">
+                <label class="form-label" style="font-size:0.75rem;">Cardholder Name</label>
+                <input type="text" class="form-control" placeholder="AYUSH SHARMA" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:0.75rem;">Card Number</label>
+                <input type="text" class="form-control" placeholder="4532 9901 2345 8890" maxlength="19" required>
+              </div>
+              <div class="card-row">
+                <div class="form-group">
+                  <label class="form-label" style="font-size:0.75rem;">Expiry Date</label>
+                  <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" style="font-size:0.75rem;">CVV Code</label>
+                  <input type="password" class="form-control" placeholder="•••" maxlength="3" required>
+                </div>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Pay Securely</button>
+            </form>
+          </div>
+
+          <!-- Tab Panel B: UPI QR -->
+          <div class="payment-panel" id="panel-upi">
+            <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; padding:0.5rem 0;">
+              <p style="font-size:0.85rem; color:var(--text-light);">Scan this dynamic QR Code using GooglePay, PhonePe, BHIM or any UPI app to complete payment.</p>
+              
+              <!-- Clean SVG representation of a QR Code -->
+              <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border:1px solid var(--border-color); padding:0.5rem; background:white; border-radius: var(--radius-sm);">
+                <!-- Corners -->
+                <rect x="5" y="5" width="20" height="20" fill="#12372a"/>
+                <rect x="10" y="10" width="10" height="10" fill="white"/>
+                <rect x="75" y="5" width="20" height="20" fill="#12372a"/>
+                <rect x="80" y="10" width="10" height="10" fill="white"/>
+                <rect x="5" y="75" width="20" height="20" fill="#12372a"/>
+                <rect x="10" y="80" width="10" height="10" fill="white"/>
+                <!-- Randomized grid shapes mimicking QR -->
+                <rect x="35" y="5" width="10" height="10" fill="#ad8b3a"/>
+                <rect x="55" y="5" width="10" height="15" fill="#12372a"/>
+                <rect x="35" y="25" width="15" height="10" fill="#12372a"/>
+                <rect x="5" y="35" width="10" height="10" fill="#ad8b3a"/>
+                <rect x="20" y="35" width="10" height="15" fill="#12372a"/>
+                <rect x="65" y="35" width="15" height="20" fill="#ad8b3a"/>
+                <rect x="35" y="50" width="20" height="10" fill="#12372a"/>
+                <rect x="10" y="60" width="15" height="10" fill="#12372a"/>
+                <rect x="35" y="65" width="10" height="15" fill="#ad8b3a"/>
+                <rect x="60" y="65" width="15" height="15" fill="#12372a"/>
+                <rect x="85" y="75" width="10" height="10" fill="#ad8b3a"/>
+                <rect x="85" y="45" width="10" height="15" fill="#12372a"/>
+              </svg>
+              
+              <div style="font-size:0.85rem; font-weight:600; color:var(--primary); background:var(--sage-light); padding:0.4rem 1rem; border-radius:20px;">
+                UPI ID: shaktipharma@ybl
+              </div>
+              <button class="btn-primary" id="btn-upi-mock-verify" style="width: 100%; justify-content: center; margin-top: 0.5rem;">I Have Scanned & Paid</button>
+            </div>
+          </div>
+
+          <!-- Tab Panel C: Net Banking -->
+          <div class="payment-panel" id="panel-net">
+            <form id="payment-form-net">
+              <div class="form-group">
+                <label class="form-label" style="font-size:0.75rem;">Select Popular Bank</label>
+                <select class="form-control" required id="payment-net-bank">
+                  <option value="sbi">State Bank of India (SBI)</option>
+                  <option value="hdfc">HDFC Bank</option>
+                  <option value="icici">ICICI Bank</option>
+                  <option value="axis">Axis Bank</option>
+                  <option value="pnb">Punjab National Bank (PNB)</option>
+                </select>
+              </div>
+              <p style="font-size:0.8rem; color:var(--text-light); margin-bottom:1.5rem; line-height:1.4;">You will be redirected to the bank's secure processing portal to input your netbanking credentials and authorize this transaction.</p>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Authenticate Transaction</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- View 2: Processing Simulator (hidden by default) -->
+        <div id="payment-processing-container" class="processing-container" style="display:none;">
+          <div class="spinner-ring"></div>
+          <h4 class="brand-font" style="font-size:1.4rem;">Authorizing Transaction</h4>
+          <p style="font-size:0.85rem; color:var(--text-light); max-width:280px;" id="payment-stage-text">Connecting to payment service gateways...</p>
+        </div>
+
+        <!-- View 3: Success Receipt (hidden by default) -->
+        <div id="payment-success-container" class="processing-container" style="display:none;">
+          <div class="checkmark-circle">✓</div>
+          <h4 class="brand-font" style="font-size:1.6rem; color:var(--success);">Payment Successful!</h4>
+          <p style="font-size:0.9rem; color:var(--text-light); margin-bottom:1rem;">Your order has been recorded and is being prepared for shipment from Kasganj.</p>
+          
+          <div style="background:var(--sage-light); border-radius:var(--radius-sm); padding:1rem; width:100%; text-align:left; font-size:0.85rem; line-height:1.5; border:1px solid var(--border-color);" id="receipt-details">
+            <!-- Receipt information loaded via JS -->
+          </div>
+          
+          <button class="btn-primary" id="btn-payment-done" style="width: 100%; justify-content: center; margin-top: 1rem;">Return to Shop</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL INTERACTIVE MODAL OVERLAY -->
+  <div class="modal-overlay" id="product-detail-modal-overlay">
+    <div class="payment-modal" style="max-width: 800px; border-radius: var(--radius-lg);">
+      <div class="payment-header">
+        <h3 id="detail-modal-title">Product Specifications</h3>
+        <button class="btn-icon" style="color:var(--white); padding:0.25rem;" id="close-detail-modal" title="Close Details">✕</button>
+      </div>
+      
+      <div class="payment-body" style="padding: 2.25rem;">
+        <div id="detail-modal-content-grid" style="display:grid; grid-template-columns: 1fr 1.25fr; gap:2.5rem; align-items:flex-start;">
+          
+          <!-- Left side: Product Image Gallery -->
+          <div>
+            <div style="background:linear-gradient(135deg, var(--sage-light), #f7f5ef); border-radius:var(--radius-md); padding:1.5rem; display:flex; justify-content:center; align-items:center; border:1px solid var(--border-color); height:300px; overflow:hidden; position:relative;">
+              <img id="detail-main-img" src="" alt="Main product photo" style="max-height:100%; max-width:100%; filter: drop-shadow(0 10px 20px rgba(18, 55, 42, 0.15)); transition: var(--transition-smooth);">
+            </div>
+            <!-- Thumbnails strip -->
+            <div id="detail-thumbnails-strip" style="display:flex; gap:0.6rem; margin-top:0.85rem; overflow-x:auto; padding-bottom:0.25rem;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          
+          <!-- Right side: Product Metadata & Action Panel -->
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <div>
+              <span id="detail-category" class="product-badge" style="position:static; display:inline-block; margin-bottom:0.5rem;">Category</span>
+              <h2 id="detail-title" class="brand-font" style="font-size:2rem; line-height:1.2; margin:0;">Product Title</h2>
+              <div id="detail-price" style="font-size:1.5rem; font-weight:700; color:var(--primary); margin-top:0.35rem;">₹0.00</div>
+            </div>
+            
+            <p id="detail-desc" style="font-size:0.9rem; color:var(--text-light); line-height:1.5; margin:0; min-height:4.5rem;">Description goes here...</p>
+            
+            <div style="font-size:0.85rem; line-height:1.4; border-top:1px solid var(--border-color); padding-top:0.6rem;">
+              <strong style="color:var(--primary);">Therapeutic Herbs:</strong>
+              <p id="detail-ingredients" style="color:var(--text-light); margin-top:0.2rem; font-style:italic; margin-bottom:0;"></p>
+            </div>
+
+            <!-- Directions & Dosage block -->
+            <div style="font-size:0.85rem; line-height:1.4; border-top:1px dashed var(--border-color); padding-top:0.6rem;">
+              <strong style="color:var(--primary);">Recommended Dosage:</strong>
+              <p id="detail-dosage" style="color:var(--text-light); margin-top:0.2rem; margin-bottom:0;"></p>
+            </div>
+            
+            <div style="display:flex; align-items:center; gap:1.25rem; border-top:1px solid var(--border-color); padding-top:1rem; margin-top:0.5rem;">
+              <div style="display:flex; align-items:center; gap:0.5rem; background:var(--sage-light); padding:0.35rem 0.65rem; border-radius:var(--radius-sm);">
+                <button class="qty-btn" id="detail-qty-minus" style="font-weight:700; font-size:1rem;">-</button>
+                <span id="detail-qty-value" style="font-weight:600; min-width:20px; text-align:center; font-size:0.95rem;">1</span>
+                <button class="qty-btn" id="detail-qty-plus" style="font-weight:700; font-size:1rem;">+</button>
+              </div>
+              
+              <button class="btn-primary" id="detail-btn-add-cart" style="flex:1; justify-content:center; padding:0.65rem;">
+                🛒 Add to Cart
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS POPUP FRAMEWORK -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.gif" alt="Shakti Pharma Logo" class="footer-logo-img" style="height: 38px; width: auto; border-radius: var(--radius-sm); filter: brightness(0.9) contrast(1.1);">
+          <h3 class="brand-font">Shakti Pharma</h3>
+        </div>
+        <p>
+          Manufacturers of patent Ayurvedic medicines and organic tonics. Registered firm, delivering natural healthcare across India since 1974.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Ayurvedic Store</a></li>
+          <li><a href="#home#timeline">Legacy History</a></li>
+          <li><a href="#home#contact">Contact Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Our Catalog</h4>
+        <ul class="footer-links">
+          <li><a href="#products">Women's Health</a></li>
+          <li><a href="#products">Respiratory Syrups</a></li>
+          <li><a href="#products">Liver Tonics</a></li>
+          <li><a href="#products">Pediatrics Drops</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Newsletter</h4>
+        <p style="font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
+          Subscribe to receive herbal advice, compound formulations, and product stock updates.
+        </p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!'); this.reset();">
+          <input type="email" class="newsletter-input" placeholder="Your email address" required>
+          <button type="submit" class="btn-primary" style="padding: 0.5rem 1rem;">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 The Shakti Pharma, Kasganj (UP). All Rights Reserved.</span>
+      <span>GSTIN: 09AAPTS4423E1Z4 • AYUSH Manufacturing License Number: A-2194/95</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
