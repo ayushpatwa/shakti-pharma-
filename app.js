@@ -17,7 +17,7 @@ const firebaseConfig = {
 // --- Razorpay Configuration & Fallback System ---
 // Replace Key ID with live Razorpay credentials (looks like rzp_test_... or rzp_live_...)
 const razorpayConfig = {
-  keyId: "YOUR_RAZORPAY_KEY_ID"
+  keyId: "rzp_test_TKt49PA7XmZiYy"
 };
 
 // Global flags and DB reference
