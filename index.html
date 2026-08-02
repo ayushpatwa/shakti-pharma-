@@ -752,88 +752,36 @@
           </div>
 
           <div class="payment-tabs">
-            <button class="payment-tab-btn active-tab" data-target="panel-card">💳 Card</button>
-            <button class="payment-tab-btn" data-target="panel-upi">📱 UPI QR</button>
-            <button class="payment-tab-btn" data-target="panel-net">🏦 Net Banking</button>
+            <button class="payment-tab-btn active-tab" data-target="panel-razorpay">💳 Pay Online</button>
+            <button class="payment-tab-btn" data-target="panel-cod">📦 Cash on Delivery (COD)</button>
           </div>
 
-          <!-- Tab Panel A: Card -->
-          <div class="payment-panel active-panel" id="panel-card">
-            <form id="payment-form-card">
-              <div class="form-group">
-                <label class="form-label" style="font-size:0.75rem;">Cardholder Name</label>
-                <input type="text" class="form-control" placeholder="AYUSH SHARMA" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" style="font-size:0.75rem;">Card Number</label>
-                <input type="text" class="form-control" placeholder="4532 9901 2345 8890" maxlength="19" required>
-              </div>
-              <div class="card-row">
-                <div class="form-group">
-                  <label class="form-label" style="font-size:0.75rem;">Expiry Date</label>
-                  <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" style="font-size:0.75rem;">CVV Code</label>
-                  <input type="password" class="form-control" placeholder="•••" maxlength="3" required>
-                </div>
-              </div>
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Pay Securely</button>
-            </form>
-          </div>
-
-          <!-- Tab Panel B: UPI QR -->
-          <div class="payment-panel" id="panel-upi">
-            <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; padding:0.5rem 0;">
-              <p style="font-size:0.85rem; color:var(--text-light);">Scan this dynamic QR Code using GooglePay, PhonePe, BHIM or any UPI app to complete payment.</p>
-              
-              <!-- Clean SVG representation of a QR Code -->
-              <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="border:1px solid var(--border-color); padding:0.5rem; background:white; border-radius: var(--radius-sm);">
-                <!-- Corners -->
-                <rect x="5" y="5" width="20" height="20" fill="#12372a"/>
-                <rect x="10" y="10" width="10" height="10" fill="white"/>
-                <rect x="75" y="5" width="20" height="20" fill="#12372a"/>
-                <rect x="80" y="10" width="10" height="10" fill="white"/>
-                <rect x="5" y="75" width="20" height="20" fill="#12372a"/>
-                <rect x="10" y="80" width="10" height="10" fill="white"/>
-                <!-- Randomized grid shapes mimicking QR -->
-                <rect x="35" y="5" width="10" height="10" fill="#ad8b3a"/>
-                <rect x="55" y="5" width="10" height="15" fill="#12372a"/>
-                <rect x="35" y="25" width="15" height="10" fill="#12372a"/>
-                <rect x="5" y="35" width="10" height="10" fill="#ad8b3a"/>
-                <rect x="20" y="35" width="10" height="15" fill="#12372a"/>
-                <rect x="65" y="35" width="15" height="20" fill="#ad8b3a"/>
-                <rect x="35" y="50" width="20" height="10" fill="#12372a"/>
-                <rect x="10" y="60" width="15" height="10" fill="#12372a"/>
-                <rect x="35" y="65" width="10" height="15" fill="#ad8b3a"/>
-                <rect x="60" y="65" width="15" height="15" fill="#12372a"/>
-                <rect x="85" y="75" width="10" height="10" fill="#ad8b3a"/>
-                <rect x="85" y="45" width="10" height="15" fill="#12372a"/>
-              </svg>
-              
-              <div style="font-size:0.85rem; font-weight:600; color:var(--primary); background:var(--sage-light); padding:0.4rem 1rem; border-radius:20px;">
-                UPI ID: shaktipharma@ybl
-              </div>
-              <button class="btn-primary" id="btn-upi-mock-verify" style="width: 100%; justify-content: center; margin-top: 0.5rem;">I Have Scanned & Paid</button>
+          <!-- Tab Panel A: Razorpay Online (Default) -->
+          <div class="payment-panel active-panel" id="panel-razorpay">
+            <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:1.25rem; padding:1.5rem 0.5rem;">
+              <span style="font-size:3rem;">💳</span>
+              <h4 class="brand-font" style="font-size:1.3rem; margin:0; color:var(--primary);">Secure Online Checkout</h4>
+              <p style="font-size:0.85rem; color:var(--text-light); max-width:280px; margin:0; line-height:1.4;">
+                Pay securely using UPI, Credit/Debit Cards, Google Pay, PhonePe, Paytm, or Net Banking via Razorpay.
+              </p>
+              <button class="btn-primary" id="btn-pay-razorpay" style="width: 100%; justify-content: center; padding:0.75rem; font-size:0.95rem; margin-top:0.5rem;">
+                🚀 Proceed to Pay Online
+              </button>
             </div>
           </div>
 
-          <!-- Tab Panel C: Net Banking -->
-          <div class="payment-panel" id="panel-net">
-            <form id="payment-form-net">
-              <div class="form-group">
-                <label class="form-label" style="font-size:0.75rem;">Select Popular Bank</label>
-                <select class="form-control" required id="payment-net-bank">
-                  <option value="sbi">State Bank of India (SBI)</option>
-                  <option value="hdfc">HDFC Bank</option>
-                  <option value="icici">ICICI Bank</option>
-                  <option value="axis">Axis Bank</option>
-                  <option value="pnb">Punjab National Bank (PNB)</option>
-                </select>
-              </div>
-              <p style="font-size:0.8rem; color:var(--text-light); margin-bottom:1.5rem; line-height:1.4;">You will be redirected to the bank's secure processing portal to input your netbanking credentials and authorize this transaction.</p>
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Authenticate Transaction</button>
-            </form>
+          <!-- Tab Panel B: Cash on Delivery (COD) -->
+          <div class="payment-panel" id="panel-cod">
+            <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:1.25rem; padding:1.5rem 0.5rem;">
+              <span style="font-size:3rem;">📦</span>
+              <h4 class="brand-font" style="font-size:1.3rem; margin:0; color:var(--primary);">Cash on Delivery (COD)</h4>
+              <p style="font-size:0.85rem; color:var(--text-light); max-width:280px; margin:0; line-height:1.4;">
+                Pay with cash at your doorstep when your parcel is delivered from our Kasganj office.
+              </p>
+              <button class="btn-primary" id="btn-pay-cod" style="width: 100%; justify-content: center; padding:0.75rem; font-size:0.95rem; margin-top:0.5rem; background:#ad8b3a; border-color:#ad8b3a;">
+                🤝 Place Cash on Delivery Order
+              </button>
+            </div>
           </div>
         </div>
 
@@ -990,6 +938,9 @@
   <!-- Firebase SDKs (Compat Version) -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Razorpay Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <script src="app.js"></script>
 </body>

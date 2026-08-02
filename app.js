@@ -14,6 +14,12 @@ const firebaseConfig = {
   measurementId: "G-HFVGWS7FWB"
 };
 
+// --- Razorpay Configuration & Fallback System ---
+// Replace Key ID with live Razorpay credentials (looks like rzp_test_... or rzp_live_...)
+const razorpayConfig = {
+  keyId: "YOUR_RAZORPAY_KEY_ID"
+};
+
 // Global flags and DB reference
 let isFirebaseActive = false;
 let db = null;
@@ -1287,9 +1293,8 @@ function initPaymentGateway() {
   });
 
   // Submit payment listeners
-  const cardForm = document.getElementById('payment-form-card');
-  const netForm = document.getElementById('payment-form-net');
-  const upiVerifyBtn = document.getElementById('btn-upi-mock-verify');
+  const payOnlineBtn = document.getElementById('btn-pay-razorpay');
+  const payCodBtn = document.getElementById('btn-pay-cod');
 
   const startPaymentProcessing = (methodName) => {
     document.getElementById('payment-input-container').style.display = 'none';
@@ -1299,10 +1304,10 @@ function initPaymentGateway() {
 
     // Simulate multi-stage authorization timeline
     const stages = [
-      "Contacting secure banking interfaces...",
-      "Verifying security signatures and tokens...",
-      "Authorizing ledger transfer of funds...",
-      "Generating order receipt ledger..."
+      "Connecting to online gateway protocols...",
+      "Encrypting customer transaction payloads...",
+      "Authorizing merchant ledger payment...",
+      "Generating invoice confirmation receipt..."
     ];
 
     let currentStageIndex = 0;
@@ -1314,24 +1319,48 @@ function initPaymentGateway() {
         clearInterval(interval);
         finalizeTransaction(methodName);
       }
-    }, 900);
+    }, 800);
   };
 
-  cardForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    startPaymentProcessing("Credit Card");
-  });
+  if (payOnlineBtn) {
+    payOnlineBtn.addEventListener('click', () => {
+      // Check if Razorpay is loaded and the key is customized
+      if (typeof Razorpay !== 'undefined' && razorpayConfig.keyId && !razorpayConfig.keyId.includes('YOUR_')) {
+        const options = {
+          "key": razorpayConfig.keyId,
+          "amount": activePaymentAmount * 100, // Amount is in paise subunits (e.g. 1000 paise = 10 INR)
+          "currency": "INR",
+          "name": "The Shakti Pharma",
+          "description": "Online Order Payment",
+          "handler": function (response) {
+            finalizeTransaction("Razorpay Online");
+            showToast("Payment Authorized! Payment ID: " + response.razorpay_payment_id);
+          },
+          "prefill": {
+            "name": Store.currentUser ? Store.currentUser.name : "",
+            "email": Store.currentUser ? Store.currentUser.email : "",
+            "contact": Store.currentUser ? Store.currentUser.phone : ""
+          },
+          "theme": {
+            "color": "#12372a"
+          }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } else {
+        // Fallback: Simulate processing loader screen
+        console.warn("⚠️ Razorpay Key ID not configured. Simulating card checkout...");
+        startPaymentProcessing("Online Card/UPI");
+      }
+    });
+  }
 
-  netForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const bankSelect = document.getElementById('payment-net-bank');
-    const bankName = bankSelect.options[bankSelect.selectedIndex].text;
-    startPaymentProcessing(`Netbanking (${bankName})`);
-  });
-
-  upiVerifyBtn.addEventListener('click', () => {
-    startPaymentProcessing("UPI Scan QR");
-  });
+  if (payCodBtn) {
+    payCodBtn.addEventListener('click', () => {
+      // Direct placement of cash on delivery order
+      finalizeTransaction("Cash on Delivery (COD)");
+    });
+  }
 
   // Back button on receipt
   document.getElementById('btn-payment-done').addEventListener('click', () => {
