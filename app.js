@@ -1562,26 +1562,33 @@ function renderAdminDashboard() {
   const overviewBtn = document.getElementById('admin-tab-overview');
   const productsBtn = document.getElementById('admin-tab-products');
   const ordersBtn = document.getElementById('admin-tab-orders');
+  const customersBtn = document.getElementById('admin-tab-customers');
 
   const panels = {
     overview: document.getElementById('admin-section-overview'),
     products: document.getElementById('admin-section-products'),
-    orders: document.getElementById('admin-section-orders')
+    orders: document.getElementById('admin-section-orders'),
+    customers: document.getElementById('admin-section-customers')
   };
 
   const setTabActive = (tabName) => {
     adminActiveSection = tabName;
     
     // Toggle side nav active button CSS class
-    [overviewBtn, productsBtn, ordersBtn].forEach(btn => btn.classList.remove('active-admin-nav'));
-    document.getElementById(`admin-tab-${tabName}`).classList.add('active-admin-nav');
+    [overviewBtn, productsBtn, ordersBtn, customersBtn].forEach(btn => {
+      if (btn) btn.classList.remove('active-admin-nav');
+    });
+    const targetTabBtn = document.getElementById(`admin-tab-${tabName}`);
+    if (targetTabBtn) targetTabBtn.classList.add('active-admin-nav');
 
     // Toggle viewport section panel
     for (let key in panels) {
-      if (key === tabName) {
-        panels[key].classList.add('active-admin-section');
-      } else {
-        panels[key].classList.remove('active-admin-section');
+      if (panels[key]) {
+        if (key === tabName) {
+          panels[key].classList.add('active-admin-section');
+        } else {
+          panels[key].classList.remove('active-admin-section');
+        }
       }
     }
 
@@ -1592,12 +1599,15 @@ function renderAdminDashboard() {
       renderAdminProductList();
     } else if (tabName === 'orders') {
       renderAdminOrdersList();
+    } else if (tabName === 'customers') {
+      renderAdminCustomersList();
     }
   };
 
-  overviewBtn.onclick = () => setTabActive('overview');
-  productsBtn.onclick = () => setTabActive('products');
-  ordersBtn.onclick = () => setTabActive('orders');
+  if (overviewBtn) overviewBtn.onclick = () => setTabActive('overview');
+  if (productsBtn) productsBtn.onclick = () => setTabActive('products');
+  if (ordersBtn) ordersBtn.onclick = () => setTabActive('orders');
+  if (customersBtn) customersBtn.onclick = () => setTabActive('customers');
 
   // Trigger default panel reload
   setTabActive(adminActiveSection);
@@ -1993,6 +2003,48 @@ function renderAdminOrdersList() {
       </tr>
     `;
   }).join('');
+}
+
+// Sub-view D: Admin registered customers viewer
+function renderAdminCustomersList() {
+  const tableBody = document.getElementById('admin-customers-table-body');
+  const countBadge = document.getElementById('admin-customer-count');
+  if (!tableBody) return;
+
+  // Filter out admin users
+  const customers = Store.users.filter(u => u.role !== 'admin');
+  
+  if (countBadge) {
+    countBadge.innerText = `Total: ${customers.length}`;
+  }
+
+  if (customers.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center; padding:3rem; color:var(--text-light);">
+          No registered customer accounts recorded yet.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tableBody.innerHTML = customers.map(c => `
+    <tr style="border-bottom: 1px solid var(--border-color);">
+      <td style="padding:1rem;">
+        <strong style="color:var(--primary);">${c.name || 'Anonymous User'}</strong>
+      </td>
+      <td style="padding:1rem;"><code>${c.email}</code></td>
+      <td style="padding:1rem; color:var(--text-light); max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${c.address || ''}">
+        ${c.address || '—'}
+      </td>
+      <td style="padding:1rem;">
+        <span class="badge-status" style="background:#e0f2fe; color:#0369a1; font-weight:600; font-size:0.75rem;">
+          Customer
+        </span>
+      </td>
+    </tr>
+  `).join('');
 }
 
 
