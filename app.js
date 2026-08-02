@@ -1402,7 +1402,7 @@ function finalizeTransaction(paymentMethod) {
   const waReceiptBtn = document.getElementById('btn-send-whatsapp-receipt');
   if (waReceiptBtn) {
     waReceiptBtn.onclick = () => {
-      const adminWhatsApp = "919412403661"; // Admin/Business phone number
+      const adminWhatsApp = "919368611463"; // Admin/Business phone number
       
       let text = `*NEW ORDER CONFIRMATION - SHAKTI PHARMA*\n\n`;
       text += `*Order ID:* #${orderId}\n`;
