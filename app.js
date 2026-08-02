@@ -761,11 +761,11 @@ function initAuth() {
       const pass = document.getElementById('login-password').value.trim();
 
       // Check admin account bypass
-      if ((email.toLowerCase() === 'admin' || email.toLowerCase() === 'admin@shaktipharma.in') && pass === 'admin123') {
+      if ((email.toLowerCase() === 'admin' || email.toLowerCase() === 'admin@shaktipharma.in' || email.toLowerCase() === 'shaktipharmaksj@gmail.com') && pass === 'admin123') {
         Store.currentUser = {
           role: 'admin',
           name: 'System Administrator',
-          email: 'admin@shaktipharma.in'
+          email: 'shaktipharmaksj@gmail.com'
         };
         Store.saveCurrentUser();
         Store.syncCartLoad();
