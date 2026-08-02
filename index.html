@@ -362,6 +362,10 @@
             <input type="email" id="reg-email" class="form-control" placeholder="ayush@example.com" required>
           </div>
           <div class="form-group">
+            <label class="form-label">WhatsApp Mobile Number</label>
+            <input type="tel" id="reg-phone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+          </div>
+          <div class="form-group">
             <label class="form-label">Password</label>
             <input type="password" id="reg-password" class="form-control" placeholder="Choose a secure password" minlength="6" required>
           </div>
@@ -697,9 +701,14 @@
 
           <!-- Admin Panel D: Registered Customers -->
           <div class="admin-content-section" id="admin-section-customers">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
               <h3 class="brand-font" style="margin:0;">Registered Customers Database</h3>
-              <span id="admin-customer-count" style="font-weight:600; color:var(--accent); font-size:0.95rem;">Total: 0</span>
+              <div style="display:flex; align-items:center; gap:1rem;">
+                <button class="btn-secondary" onclick="exportCustomersToCSV()" style="padding:0.4rem 0.8rem; font-size:0.8rem;">
+                  📥 Export to Excel/CSV
+                </button>
+                <span id="admin-customer-count" style="font-weight:600; color:var(--accent); font-size:0.95rem;">Total: 0</span>
+              </div>
             </div>
             
             <div class="data-table-wrapper">
@@ -707,9 +716,9 @@
                 <thead>
                   <tr>
                     <th>Customer Name</th>
-                    <th>Email Address</th>
+                    <th>Email / Phone</th>
                     <th>Shipping Address</th>
-                    <th>Role</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody id="admin-customers-table-body">
@@ -846,6 +855,9 @@
           </div>
           
           <button class="btn-primary" id="btn-payment-done" style="width: 100%; justify-content: center; margin-top: 1rem;">Return to Shop</button>
+          <button class="btn-secondary" id="btn-send-whatsapp-receipt" style="width: 100%; justify-content: center; margin-top: 0.5rem; background:#128c7e; color:white; border-color:#128c7e;">
+            💬 Send Invoice / Order to WhatsApp
+          </button>
         </div>
 
       </div>

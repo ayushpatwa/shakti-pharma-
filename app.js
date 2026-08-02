@@ -783,6 +783,7 @@ function initAuth() {
           role: 'customer',
           name: matched.name,
           email: matched.email,
+          phone: matched.phone || '',
           address: matched.address
         };
         Store.saveCurrentUser();
@@ -803,6 +804,7 @@ function initAuth() {
       e.preventDefault();
       const name = document.getElementById('reg-name').value.trim();
       const email = document.getElementById('reg-email').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
       const pass = document.getElementById('reg-password').value.trim();
       const addr = document.getElementById('reg-address').value.trim();
 
@@ -813,7 +815,7 @@ function initAuth() {
       }
 
       // Save customer record
-      const newUser = { name, email, password: pass, address: addr };
+      const newUser = { name, email, phone, password: pass, address: addr };
       Store.users.push(newUser);
       Store.saveUsers();
 
@@ -1396,6 +1398,35 @@ function finalizeTransaction(paymentMethod) {
     <strong>Shipping To:</strong> ${Store.currentUser.name}, ${Store.currentUser.address.substring(0, 45)}...
   `;
   
+  // Set up Send Invoice to WhatsApp button click handler
+  const waReceiptBtn = document.getElementById('btn-send-whatsapp-receipt');
+  if (waReceiptBtn) {
+    waReceiptBtn.onclick = () => {
+      const adminWhatsApp = "919412403661"; // Admin/Business phone number
+      
+      let text = `*NEW ORDER CONFIRMATION - SHAKTI PHARMA*\n\n`;
+      text += `*Order ID:* #${orderId}\n`;
+      text += `*Reference ID:* ${transactionId}\n`;
+      text += `*Date:* ${formattedDate}\n`;
+      text += `*Payment Method:* ${paymentMethod}\n`;
+      text += `*Total Amount:* ₹${activePaymentAmount}.00\n\n`;
+      text += `*Items Ordered:*\n`;
+      orderItemsList.forEach(item => {
+        text += `- ${item.title} (x${item.qty}) - ₹${item.price} each\n`;
+      });
+      text += `\n*Deliver To:*\n`;
+      text += `Name: ${Store.currentUser.name}\n`;
+      text += `Address: ${Store.currentUser.address}\n`;
+      if (Store.currentUser.phone) {
+        text += `WhatsApp/Phone: ${Store.currentUser.phone}\n`;
+      }
+      
+      const encodedText = encodeURIComponent(text);
+      const url = `https://wa.me/${adminWhatsApp}?text=${encodedText}`;
+      window.open(url, '_blank');
+    };
+  }
+
   successSection.style.display = 'flex';
   showToast("Order placed successfully! Confetti simulated.");
 }
@@ -2029,23 +2060,72 @@ function renderAdminCustomersList() {
     return;
   }
 
-  tableBody.innerHTML = customers.map(c => `
-    <tr style="border-bottom: 1px solid var(--border-color);">
-      <td style="padding:1rem;">
-        <strong style="color:var(--primary);">${c.name || 'Anonymous User'}</strong>
-      </td>
-      <td style="padding:1rem;"><code>${c.email}</code></td>
-      <td style="padding:1rem; color:var(--text-light); max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${c.address || ''}">
-        ${c.address || '—'}
-      </td>
-      <td style="padding:1rem;">
-        <span class="badge-status" style="background:#e0f2fe; color:#0369a1; font-weight:600; font-size:0.75rem;">
-          Customer
-        </span>
-      </td>
-    </tr>
-  `).join('');
+  tableBody.innerHTML = customers.map(c => {
+    const cleanPhone = c.phone ? c.phone.trim() : '';
+    let waLink = '';
+    if (cleanPhone) {
+      let numericPhone = cleanPhone.replace(/\D/g, '');
+      if (numericPhone.length === 10) {
+        numericPhone = "91" + numericPhone; // India code default
+      }
+      waLink = `https://wa.me/${numericPhone}?text=Hello%20${encodeURIComponent(c.name || 'Customer')}%2C%20this%20is%20Shakti%20Pharma.%20`;
+    }
+
+    const waButton = waLink ? `
+      <a href="${waLink}" target="_blank" class="btn-secondary" style="padding:0.35rem 0.65rem; font-size:0.75rem; background:#25d366; color:white; border-color:#25d366; display:inline-flex; align-items:center; gap:0.25rem; font-weight:600; border-radius:var(--radius-sm);">
+        💬 Chat
+      </a>
+    ` : '<span style="color:var(--text-light); font-size:0.8rem;">No WhatsApp</span>';
+
+    return `
+      <tr style="border-bottom: 1px solid var(--border-color);">
+        <td style="padding:1rem;">
+          <strong style="color:var(--primary);">${c.name || 'Anonymous User'}</strong>
+        </td>
+        <td style="padding:1rem;">
+          <code style="display:block; font-size:0.8rem; margin-bottom:0.15rem;">${c.email}</code>
+          ${c.phone ? `<span style="font-size:0.8rem; color:var(--accent); font-weight:600;">📞 ${c.phone}</span>` : '<span style="font-size:0.75rem; color:var(--text-light);">No number</span>'}
+        </td>
+        <td style="padding:1rem; color:var(--text-light); max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${c.address || ''}">
+          ${c.address || '—'}
+        </td>
+        <td style="padding:1rem;">
+          ${waButton}
+        </td>
+      </tr>
+    `;
+  }).join('');
 }
+
+// Global Customer Database Export to CSV (Excel / Google Sheets compatible)
+window.exportCustomersToCSV = function() {
+  const customers = Store.users.filter(u => u.role !== 'admin');
+  if (customers.length === 0) {
+    showToast("No registered customers to export.", "error");
+    return;
+  }
+
+  let csvContent = "\uFEFF"; // UTF-8 BOM for correct Excel encoding
+  csvContent += "Full Name,Email Address,WhatsApp Number,Shipping Address\r\n";
+
+  customers.forEach(c => {
+    const name = (c.name || 'Anonymous User').replace(/"/g, '""');
+    const email = (c.email || '').replace(/"/g, '""');
+    const phone = (c.phone || '').replace(/"/g, '""');
+    const address = (c.address || '').replace(/"/g, '""');
+    csvContent += `"${name}","${email}","${phone}","${address}"\r\n`;
+  });
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", `shakti_pharma_customers_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  showToast("CSV Database exported successfully!");
+};
 
 
 // Auto-slide animation for Hero section Legacy Banners
