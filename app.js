@@ -2,6 +2,35 @@
 // SHAKTI PHARMA - APPLICATION CORE SCRIPT
 // ==========================================
 
+// --- Firebase Configuration & Fallback System ---
+// Replace the values below with your client's actual keys from the Firebase Console
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// Global flags and DB reference
+let isFirebaseActive = false;
+let db = null;
+
+try {
+  // Check if firebase is loaded and keys are customized (not placeholders)
+  if (typeof firebase !== 'undefined' && firebaseConfig.projectId && !firebaseConfig.projectId.includes('YOUR_')) {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    isFirebaseActive = true;
+    console.log("🔥 Successfully connected to Firebase Cloud Database!");
+  } else {
+    console.warn("⚠️ Firebase is not configured. Falling back to local storage (Offline Mode).");
+  }
+} catch (error) {
+  console.error("❌ Failed to initialize Firebase:", error);
+}
+
 // --- Custom SVGs Generator for Products (Data URLs) ---
 function generateProductSVG(color, labelTitle, iconType) {
   let iconSvg = '';
@@ -315,8 +344,84 @@ const Store = {
   cart: [], // Stores items: { productId, qty }
   orders: [],
 
-  init() {
-    // 1. Load or seed products
+  async init() {
+    // 1. Load products database
+    if (isFirebaseActive) {
+      try {
+        const snap = await db.collection('products').get();
+        if (snap.empty) {
+          console.log("🌱 Database is empty. Seeding Firestore with default products...");
+          for (const prod of defaultProducts) {
+            await db.collection('products').doc(prod.id).set(prod);
+          }
+          this.products = [...defaultProducts];
+        } else {
+          this.products = [];
+          snap.forEach(doc => {
+            this.products.push(doc.data());
+          });
+        }
+        // Force update images and dosage from defaults just like local setup
+        this.products.forEach(p => {
+          const match = defaultProducts.find(dp => dp.id === p.id);
+          if (match) {
+            p.image = match.image;
+            p.images = [...match.images];
+            if (!p.dosage) p.dosage = match.dosage;
+          }
+        });
+        renderProductsStore();
+        renderAdminProductList();
+      } catch (err) {
+        console.error("Failed to load products from Firestore, using local fallback:", err);
+        this.loadLocalProducts();
+      }
+    } else {
+      this.loadLocalProducts();
+    }
+
+    // 2. Load users database
+    if (isFirebaseActive) {
+      try {
+        const snap = await db.collection('users').get();
+        this.users = [];
+        snap.forEach(doc => {
+          this.users.push(doc.data());
+        });
+      } catch (err) {
+        console.error("Failed to load users from Firestore, using local fallback:", err);
+        this.loadLocalUsers();
+      }
+    } else {
+      this.loadLocalUsers();
+    }
+
+    // 3. Load active user session
+    const cachedUser = localStorage.getItem('shakti_current_user');
+    this.currentUser = cachedUser ? JSON.parse(cachedUser) : null;
+
+    // 4. Load orders list
+    if (isFirebaseActive) {
+      try {
+        const snap = await db.collection('orders').get();
+        this.orders = [];
+        snap.forEach(doc => {
+          this.orders.push(doc.data());
+        });
+        renderAdminOrdersList();
+      } catch (err) {
+        console.error("Failed to load orders from Firestore, using local fallback:", err);
+        this.loadLocalOrders();
+      }
+    } else {
+      this.loadLocalOrders();
+    }
+
+    // 5. Load or restore cart state
+    this.syncCartLoad();
+  },
+
+  loadLocalProducts() {
     const cachedProducts = localStorage.getItem('shakti_products');
     if (!cachedProducts || JSON.parse(cachedProducts).length !== 14) {
       localStorage.setItem('shakti_products', JSON.stringify(defaultProducts));
@@ -325,11 +430,9 @@ const Store = {
       this.products = JSON.parse(cachedProducts);
     }
 
-    // Force update cached properties (images gallery and dosage directions)
     this.products.forEach(p => {
       const match = defaultProducts.find(dp => dp.id === p.id);
       if (match) {
-        // ALWAYS overwrite image and images to match the new box/bottle main image configuration!
         p.image = match.image;
         p.images = [...match.images];
         if (!p.dosage) {
@@ -345,37 +448,51 @@ const Store = {
       }
     });
     this.saveProducts();
+  },
 
-    // 2. Load users database
+  loadLocalUsers() {
     if (!localStorage.getItem('shakti_users')) {
       localStorage.setItem('shakti_users', JSON.stringify([]));
       this.users = [];
     } else {
       this.users = JSON.parse(localStorage.getItem('shakti_users'));
     }
+  },
 
-    // 3. Load active user session
-    const cachedUser = localStorage.getItem('shakti_current_user');
-    this.currentUser = cachedUser ? JSON.parse(cachedUser) : null;
-
-    // 4. Load orders list
+  loadLocalOrders() {
     if (!localStorage.getItem('shakti_orders')) {
       localStorage.setItem('shakti_orders', JSON.stringify([]));
       this.orders = [];
     } else {
       this.orders = JSON.parse(localStorage.getItem('shakti_orders'));
     }
-
-    // 5. Load or restore cart state
-    this.syncCartLoad();
   },
 
   saveProducts() {
     localStorage.setItem('shakti_products', JSON.stringify(this.products));
+    if (isFirebaseActive) {
+      this.products.forEach(async (prod) => {
+        try {
+          await db.collection('products').doc(prod.id).set(prod);
+        } catch (err) {
+          console.error(`Error saving product ${prod.id} to Firestore:`, err);
+        }
+      });
+    }
   },
 
   saveUsers() {
     localStorage.setItem('shakti_users', JSON.stringify(this.users));
+    if (isFirebaseActive) {
+      this.users.forEach(async (u) => {
+        try {
+          const safeId = u.email.replace(/\./g, '_');
+          await db.collection('users').doc(safeId).set(u);
+        } catch (err) {
+          console.error(`Error saving user ${u.email} to Firestore:`, err);
+        }
+      });
+    }
   },
 
   saveCurrentUser() {
@@ -388,6 +505,15 @@ const Store = {
 
   saveOrders() {
     localStorage.setItem('shakti_orders', JSON.stringify(this.orders));
+    if (isFirebaseActive) {
+      this.orders.forEach(async (order) => {
+        try {
+          await db.collection('orders').doc(order.orderId).set(order);
+        } catch (err) {
+          console.error(`Error saving order ${order.orderId} to Firestore:`, err);
+        }
+      });
+    }
   },
 
   // Sync Cart depending on user auth state
@@ -1594,6 +1720,14 @@ window.deleteProductFromDB = function(productId) {
       const title = Store.products[idx].title;
       Store.products.splice(idx, 1);
       Store.saveProducts();
+      
+      // Delete from Firestore
+      if (isFirebaseActive) {
+        db.collection('products').doc(productId).delete().catch(err => {
+          console.error("Error deleting product from Firestore:", err);
+        });
+      }
+
       renderAdminProductList();
       showToast(`Deleted product '${title}' from system.`, "error");
     }
