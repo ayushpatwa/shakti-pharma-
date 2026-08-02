@@ -5,12 +5,13 @@
 // --- Firebase Configuration & Fallback System ---
 // Replace the values below with your client's actual keys from the Firebase Console
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAbFF8xbqfl0I0-Bj__oPhg9xnSiYP_3tc",
+  authDomain: "shakti-paharma.firebaseapp.com",
+  projectId: "shakti-paharma",
+  storageBucket: "shakti-paharma.firebasestorage.app",
+  messagingSenderId: "111238240652",
+  appId: "1:111238240652:web:be488b5127f6947f649ea9",
+  measurementId: "G-HFVGWS7FWB"
 };
 
 // Global flags and DB reference
