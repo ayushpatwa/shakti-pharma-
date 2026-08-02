@@ -345,25 +345,45 @@ const Store = {
   cart: [], // Stores items: { productId, qty }
   orders: [],
 
-  async init() {
-    // 1. Load products database
+  init() {
+    // 1. Load local cached database synchronously (instant rendering!)
+    this.loadLocalProducts();
+    this.loadLocalUsers();
+    
+    // 2. Load active user session
+    const cachedUser = localStorage.getItem('shakti_current_user');
+    this.currentUser = cachedUser ? JSON.parse(cachedUser) : null;
+
+    // 3. Load local orders
+    this.loadLocalOrders();
+
+    // 4. Restore cart state
+    this.syncCartLoad();
+
+    // 5. Fetch fresh data from Firestore in the background
     if (isFirebaseActive) {
-      try {
-        const snap = await db.collection('products').get();
-        if (snap.empty) {
-          console.log("🌱 Database is empty. Seeding Firestore with default products...");
-          for (const prod of defaultProducts) {
-            await db.collection('products').doc(prod.id).set(prod);
-          }
-          this.products = [...defaultProducts];
-        } else {
-          this.products = [];
-          snap.forEach(doc => {
-            this.products.push(doc.data());
-          });
+      this.syncFirebaseBackground();
+    }
+  },
+
+  async syncFirebaseBackground() {
+    try {
+      // Synchronize Products
+      const productsSnap = await db.collection('products').get();
+      if (productsSnap.empty) {
+        // Seeding database
+        console.log("🌱 Database is empty. Seeding Firestore with default products...");
+        for (const prod of this.products) {
+          await db.collection('products').doc(prod.id).set(prod);
         }
-        // Force update images and dosage from defaults just like local setup
-        this.products.forEach(p => {
+      } else {
+        const freshProducts = [];
+        productsSnap.forEach(doc => {
+          freshProducts.push(doc.data());
+        });
+        
+        // Force update images and dosage from defaults matching logic
+        freshProducts.forEach(p => {
           const match = defaultProducts.find(dp => dp.id === p.id);
           if (match) {
             p.image = match.image;
@@ -371,55 +391,53 @@ const Store = {
             if (!p.dosage) p.dosage = match.dosage;
           }
         });
+        
+        this.products = freshProducts;
+        localStorage.setItem('shakti_products', JSON.stringify(this.products));
+        
+        // Refresh product displays
         renderProductsStore();
         renderAdminProductList();
-      } catch (err) {
-        console.error("Failed to load products from Firestore, using local fallback:", err);
-        this.loadLocalProducts();
       }
-    } else {
-      this.loadLocalProducts();
-    }
 
-    // 2. Load users database
-    if (isFirebaseActive) {
-      try {
-        const snap = await db.collection('users').get();
+      // Synchronize Users
+      const usersSnap = await db.collection('users').get();
+      if (!usersSnap.empty) {
         this.users = [];
-        snap.forEach(doc => {
+        usersSnap.forEach(doc => {
           this.users.push(doc.data());
         });
-      } catch (err) {
-        console.error("Failed to load users from Firestore, using local fallback:", err);
-        this.loadLocalUsers();
+        localStorage.setItem('shakti_users', JSON.stringify(this.users));
+      } else {
+        // Seed users to cloud if database was empty
+        if (this.users.length > 0) {
+          this.users.forEach(async (u) => {
+            const safeId = u.email.replace(/\./g, '_');
+            await db.collection('users').doc(safeId).set(u);
+          });
+        }
       }
-    } else {
-      this.loadLocalUsers();
-    }
 
-    // 3. Load active user session
-    const cachedUser = localStorage.getItem('shakti_current_user');
-    this.currentUser = cachedUser ? JSON.parse(cachedUser) : null;
-
-    // 4. Load orders list
-    if (isFirebaseActive) {
-      try {
-        const snap = await db.collection('orders').get();
+      // Synchronize Orders
+      const ordersSnap = await db.collection('orders').get();
+      if (!ordersSnap.empty) {
         this.orders = [];
-        snap.forEach(doc => {
+        ordersSnap.forEach(doc => {
           this.orders.push(doc.data());
         });
+        localStorage.setItem('shakti_orders', JSON.stringify(this.orders));
         renderAdminOrdersList();
-      } catch (err) {
-        console.error("Failed to load orders from Firestore, using local fallback:", err);
-        this.loadLocalOrders();
+      } else {
+        // Seed orders to cloud if database was empty
+        if (this.orders.length > 0) {
+          this.orders.forEach(async (order) => {
+            await db.collection('orders').doc(order.orderId).set(order);
+          });
+        }
       }
-    } else {
-      this.loadLocalOrders();
+    } catch (err) {
+      console.warn("⚠️ Firebase background sync failed (using local data cache):", err);
     }
-
-    // 5. Load or restore cart state
-    this.syncCartLoad();
   },
 
   loadLocalProducts() {
