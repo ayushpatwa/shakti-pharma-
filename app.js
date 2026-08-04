@@ -38,61 +38,7 @@ try {
   console.error("❌ Failed to initialize Firebase:", error);
 }
 
-// --- Custom SVGs Generator for Products (Data URLs) ---
-function generateProductSVG(color, labelTitle, iconType) {
-  let iconSvg = '';
-  if (iconType === 'leaf') {
-    iconSvg = `<path d="M50 35C50 35 30 55 30 68C30 78 38 85 50 85C62 85 70 78 70 68C70 55 50 35 50 35Z" fill="${color}" opacity="0.2"/>
-               <path d="M50 38V85" stroke="${color}" stroke-width="3" stroke-linecap="round"/>
-               <path d="M50 50C43 55 40 58 35 60" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
-               <path d="M50 62C57 67 60 70 65 72" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>`;
-  } else if (iconType === 'lungs') {
-    iconSvg = `<path d="M35 50C30 50 25 55 25 65C25 75 35 80 45 75C48 73 48 65 48 60C48 55 40 50 35 50Z" fill="${color}" opacity="0.25" stroke="${color}" stroke-width="2"/>
-               <path d="M65 50C70 50 75 55 75 65C75 75 65 80 55 75C52 73 52 65 52 60C52 55 60 50 65 50Z" fill="${color}" opacity="0.25" stroke="${color}" stroke-width="2"/>
-               <path d="M50 40V60" stroke="${color}" stroke-width="3" stroke-linecap="round"/>`;
-  } else if (iconType === 'blood') {
-    iconSvg = `<path d="M50 35C50 35 28 58 28 72C28 82.5 37.5 90 50 90C62.5 90 72 82.5 72 72C72 58 50 35 50 35Z" fill="#b91c1c" opacity="0.25"/>
-               <path d="M50 42C50 42 36 60 36 70C36 78 42 82 50 82C58 82 64 78 64 70C64 60 50 42 50 42Z" fill="#b91c1c" opacity="0.4"/>`;
-  } else if (iconType === 'liver') {
-    iconSvg = `<path d="M25 50C25 40 45 42 50 52C55 42 75 40 75 50C75 65 60 85 50 85C40 85 25 65 25 50Z" fill="${color}" opacity="0.3" stroke="${color}" stroke-width="2.5"/>
-               <circle cx="43" cy="55" r="4" fill="${color}" opacity="0.5"/>
-               <circle cx="57" cy="62" r="5" fill="${color}" opacity="0.5"/>`;
-  } else if (iconType === 'baby') {
-    iconSvg = `<circle cx="50" cy="50" r="18" stroke="${color}" stroke-width="3" fill="${color}" opacity="0.15"/>
-               <path d="M42 45H58M50 37V53" stroke="${color}" stroke-width="3" stroke-linecap="round"/>
-               <path d="M40 68C45 74 55 74 60 68" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>`;
-  } else {
-    // Default Heart/Cross combo
-    iconSvg = `<rect x="35" y="45" width="30" height="30" rx="6" fill="${color}" opacity="0.2"/>
-               <path d="M50 38V72M33 55H67" stroke="${color}" stroke-width="4.5" stroke-linecap="round"/>`;
-  }
-
-  const svgString = `<svg viewBox="0 0 100 150" width="100" height="150" xmlns="http://www.w3.org/2000/svg">
-    <!-- Bottle glass -->
-    <rect x="20" y="35" width="60" height="105" rx="18" fill="#2d2219" opacity="0.95"/>
-    <rect x="23" y="38" width="54" height="99" rx="15" fill="#443224" opacity="0.5"/>
-    <!-- Neck -->
-    <rect x="42" y="15" width="16" height="20" fill="#2d2219"/>
-    <!-- Cap -->
-    <rect x="37" y="5" width="26" height="10" rx="3" fill="#ad8b3a"/>
-    <!-- Label background -->
-    <rect x="27" y="55" width="46" height="65" rx="6" fill="#fafafa"/>
-    <rect x="29" y="57" width="42" height="61" rx="4" fill="none" stroke="${color}" stroke-width="1"/>
-    <!-- Label Details -->
-    <text x="50" y="70" font-family="'Playfair Display', serif" font-size="7" font-weight="bold" fill="${color}" text-anchor="middle">${labelTitle}</text>
-    <line x1="33" y1="76" x2="67" y2="76" stroke="${color}" stroke-width="0.5" opacity="0.5"/>
-    <!-- Embedded Icon -->
-    <g transform="translate(15, 27) scale(0.7)">
-      ${iconSvg}
-    </g>
-    <!-- Footnote -->
-    <text x="50" y="112" font-family="'Outfit', sans-serif" font-size="3.5" fill="#ad8b3a" text-anchor="middle" letter-spacing="0.5">SHAKTI PHARMA</text>
-    <!-- Shine reflection -->
-    <path d="M30 45C30 45 35 41 42 41" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.12"/>
-  </svg>`;
-  
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svgString);
-}
+// Vector generator removed
 
 // --- Initial Seed Products Database ---
 // --- Initial Seed Products Database ---
@@ -161,8 +107,7 @@ const defaultProducts = [
       "images/damarin'/54af6678-96d4-4605-a218-f163be406469.png",
       "images/damarin'/1c19afd4-9565-4fef-9a3c-8003b314cd71.png",
       "images/damarin'/82666aa1-b4d4-4160-b954-1005817041ed.png",
-      "images/damarin'/a58bf5bd-7856-47b3-a401-a7a12237538a.png",
-      generateProductSVG('#d97706', 'DAMARIN', 'cross')
+      "images/damarin'/a58bf5bd-7856-47b3-a401-a7a12237538a.png"
     ],
     dosage: "5 to 10 drops diluted in a spoonful of lukewarm water, 3 to 4 times a day, or as directed by a pediatrician.",
     active: true
@@ -215,8 +160,7 @@ const defaultProducts = [
       "images/kasol/6f280d5d-5422-4050-9678-49523bd41baa.png",
       "images/kasol/a74e37ce-a738-4c80-8c0f-bd9de3308c4c.png",
       "images/kasol/da406cb1-48af-4fb2-b454-a2eeecf87026.jpg",
-      "images/kasol/f6c003e8-f5b2-4d25-88ef-9f8848de3ff2.jpg",
-      generateProductSVG('#059669', 'KASOL', 'cross')
+      "images/kasol/f6c003e8-f5b2-4d25-88ef-9f8848de3ff2.jpg"
     ],
     dosage: "1 to 2 teaspoonfuls (5 to 10 ml) 3 times a day with warm water, or as directed by a physician.",
     active: true
@@ -233,8 +177,7 @@ const defaultProducts = [
       "images/apitite/77aade59-660e-4743-99f8-e67826964051.png",
       "images/apitite/0a890623-cd52-4ad4-a2d0-a9c8201e16b5.png",
       "images/apitite/7d518ff4-8901-4468-8852-6355161342d4.png",
-      "images/apitite/a4fc8681-0064-432e-8ad6-6cafa1dbfd9d.png",
-      generateProductSVG('#ea580c', 'APITITE', 'cross')
+      "images/apitite/a4fc8681-0064-432e-8ad6-6cafa1dbfd9d.png"
     ],
     dosage: "Adults: 2 teaspoonfuls (10ml) thrice daily half an hour before meals. Children: 1 teaspoonful thrice daily.",
     active: true
@@ -267,8 +210,7 @@ const defaultProducts = [
       "images/m-28/15eb0dc6-8693-416e-8fa7-54ba94af1150.png",
       "images/m-28/12300f6d-62e3-4758-a5a8-f41992d34ee7.png",
       "images/m-28/94cffd1c-4d6a-4f09-bbc9-458089bec503.png",
-      "images/m-28/f45f3869-4289-42fb-947a-cbd98cbaec9d.png",
-      generateProductSVG('#c026d3', 'M-28', 'cross')
+      "images/m-28/f45f3869-4289-42fb-947a-cbd98cbaec9d.png"
     ],
     dosage: "Adults: 10ml (2 teaspoonfuls) twice daily after meals, or as directed by a physician.",
     active: true
@@ -285,8 +227,7 @@ const defaultProducts = [
       "images/mini drops/2f1eab46-f1f2-4eb5-9b0a-df7e1bd8dd35.png",
       "images/mini drops/0213d271-fede-47ba-b3da-a198b01bdf47.png",
       "images/mini drops/50566d33-a343-44de-b35e-44bab70e3e02.png",
-      "images/mini drops/7edea440-8d89-4c7b-b694-808802050371.png",
-      generateProductSVG('#d97706', 'MINI', 'cross')
+      "images/mini drops/7edea440-8d89-4c7b-b694-808802050371.png"
     ],
     dosage: "Infants (1-6 months): 5-10 drops; (6-12 months): 10-15 drops, 3 to 4 times a day before feeding.",
     active: true
@@ -1933,16 +1874,9 @@ function initAdminFormController() {
       }
     }
 
-    // Default SVG generator fallback
+    // Default placeholder fallback
     const getFallbackImage = () => {
-      let svgColor = '#12372a';
-      if (category === "Women's Health") svgColor = '#c026d3';
-      else if (category === "Respiratory Care") svgColor = '#0d9488';
-      else if (category === "Restorative Tonics") svgColor = '#b91c1c';
-      else if (category === "Pediatrics") svgColor = '#d97706';
-      else if (category === "Liver Care") svgColor = '#16a34a';
-      else if (category === "Cough & Cold") svgColor = '#059669';
-      return generateProductSVG(svgColor, title.substring(0,8).toUpperCase(), 'cross');
+      return 'images/female cordial/39a0170c-2509-40ab-9900-507a166059bd.png';
     };
 
     // Collect and parse variant rows
