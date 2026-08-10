@@ -326,7 +326,13 @@ const Store = {
       } else {
         const freshProducts = [];
         productsSnap.forEach(doc => {
-          freshProducts.push(doc.data());
+          const data = doc.data();
+          if (data && data.id && data.title) {
+            freshProducts.push(data);
+          } else {
+            console.warn("Removing corrupt Firestore document:", doc.id);
+            db.collection('products').doc(doc.id).delete().catch(err => console.error(err));
+          }
         });
         
         // Force update images and dosage from defaults matching logic
@@ -389,11 +395,19 @@ const Store = {
 
   loadLocalProducts() {
     const cachedProducts = localStorage.getItem('shakti_products');
-    if (!cachedProducts || JSON.parse(cachedProducts).length !== 14) {
+    let parsed = [];
+    try {
+      parsed = cachedProducts ? JSON.parse(cachedProducts) : [];
+      parsed = parsed.filter(p => p && p.id && p.title);
+    } catch (e) {
+      parsed = [];
+    }
+
+    if (parsed.length === 0) {
       localStorage.setItem('shakti_products', JSON.stringify(defaultProducts));
       this.products = [...defaultProducts];
     } else {
-      this.products = JSON.parse(cachedProducts);
+      this.products = parsed;
     }
 
     this.products.forEach(p => {
