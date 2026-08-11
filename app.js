@@ -370,12 +370,12 @@ const Store = {
           }
         });
         
-        // Force update images and dosage from defaults matching logic
+        // Set default images and dosage from defaults matching logic if not already customized
         freshProducts.forEach(p => {
           const match = defaultProducts.find(dp => dp.id === p.id);
           if (match) {
-            p.image = match.image;
-            p.images = [...match.images];
+            if (!p.image) p.image = match.image;
+            if (!p.images || p.images.length === 0) p.images = [...match.images];
             if (!p.dosage) p.dosage = match.dosage;
           }
         });
@@ -454,8 +454,8 @@ const Store = {
     this.products.forEach(p => {
       const match = defaultProducts.find(dp => dp.id === p.id);
       if (match) {
-        p.image = match.image;
-        p.images = [...match.images];
+        if (!p.image) p.image = match.image;
+        if (!p.images || p.images.length === 0) p.images = [...match.images];
         if (!p.dosage) {
           p.dosage = match.dosage;
         }
