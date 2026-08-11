@@ -281,6 +281,41 @@ const defaultProducts = [
     ],
     dosage: "Infants: 5-10 drops; Children: 10-20 drops, administered with lukewarm water 3 to 4 times a day or when nausea occurs.",
     active: true
+  },
+  {
+    id: "p16",
+    title: "Brain Syrup",
+    category: "Restorative Tonics",
+    price: 160,
+    description: "Superb Ayurvedic cognitive brain tonic formulated to enhance memory retention, boost concentration, relieve mental stress, and support overall nervous system health.",
+    ingredients: "Brahmi, Shankhpushpi, Ashwagandha, Jyotishmati, Jatamansi, Vacha",
+    image: "images/Brain syrup/cd54a287-434a-4bc5-b797-67e33f6107c9.png",
+    images: [
+      "images/Brain syrup/cd54a287-434a-4bc5-b797-67e33f6107c9.png",
+      "images/Brain syrup/3eb9016d-0bfb-4cfd-9f16-bfb5b9f67d97.png",
+      "images/Brain syrup/8ea9d929-9397-42df-a051-ed72e8dc9b43.png",
+      "images/Brain syrup/2daa1278-5c80-49d7-9479-014b312177c7.png"
+    ],
+    dosage: "Adults: 2 teaspoonfuls twice daily with water. Children: 1 teaspoonful twice daily.",
+    active: true
+  },
+  {
+    id: "p17",
+    title: "Livero Drops",
+    category: "Pediatrics",
+    price: 110,
+    description: "Gentle pediatric liver drops designed to regulate digestion, correct infant colic, relieve loss of appetite, and support healthy liver functioning in babies.",
+    ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
+    image: "images/livero drops/bf4a698f-b089-415f-98bd-3031fde6f6cc.png",
+    images: [
+      "images/livero drops/bf4a698f-b089-415f-98bd-3031fde6f6cc.png",
+      "images/livero drops/0cf9259d-3a79-41b7-9a48-bb40a60d66de.png",
+      "images/livero drops/3d6fefc0-fb25-4d33-96f0-6b72964014dd.png",
+      "images/livero drops/57b0f2d0-bca7-4a72-8a75-45831aa336b7.png",
+      "images/livero drops/9e276607-8c1a-41b7-a682-ad7ca6be8b13.png"
+    ],
+    dosage: "Infants (up to 6 months): 5 drops twice daily. Children (6 months to 1 year): 10 drops twice daily, or as directed by a pediatrician.",
+    active: true
   }
 ];
 
@@ -408,6 +443,12 @@ const Store = {
       this.products = [...defaultProducts];
     } else {
       this.products = parsed;
+      // Inject missing baseline products
+      defaultProducts.forEach(dp => {
+        if (!this.products.some(p => p.id === dp.id)) {
+          this.products.push(dp);
+        }
+      });
     }
 
     this.products.forEach(p => {
