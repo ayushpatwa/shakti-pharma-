@@ -14,11 +14,7 @@ const firebaseConfig = {
   measurementId: "G-HFVGWS7FWB"
 };
 
-// --- Razorpay Configuration & Fallback System ---
-// Replace Key ID with live Razorpay credentials (looks like rzp_test_... or rzp_live_...)
-const razorpayConfig = {
-  keyId: "rzp_test_TKzThTtIb5zVp5"
-};
+
 
 // Global flags and DB reference
 let isFirebaseActive = false;
@@ -1246,15 +1242,21 @@ function openPaymentModal(amount) {
   activePaymentAmount = amount;
   
   const overlay = document.getElementById('payment-modal-overlay');
-  const amountLabel = document.getElementById('payment-modal-amount');
   
-  // Set default panel views
-  document.getElementById('payment-input-container').style.display = 'block';
-  document.getElementById('payment-processing-container').style.display = 'none';
+  // Transition directly to order registration visual loader
+  document.getElementById('payment-input-container').style.display = 'none';
+  document.getElementById('payment-processing-container').style.display = 'flex';
   document.getElementById('payment-success-container').style.display = 'none';
   
-  amountLabel.innerText = `₹${amount}.00`;
+  const stageLabel = document.getElementById('payment-stage-text');
+  if (stageLabel) stageLabel.innerText = "Registering order details in database...";
+  
   overlay.classList.add('active-modal');
+
+  // Auto-finalize order transaction after 1000ms latency simulator
+  setTimeout(() => {
+    finalizeTransaction("Cash on Delivery (COD)");
+  }, 1000);
 }
 
 function closePaymentModal() {
@@ -1266,103 +1268,26 @@ function closePaymentModal() {
 function initPaymentGateway() {
   const overlay = document.getElementById('payment-modal-overlay');
   const closeBtn = document.getElementById('close-payment-modal');
-  const tabButtons = document.querySelectorAll('.payment-tab-btn');
-  const panels = document.querySelectorAll('.payment-panel');
 
-  closeBtn.addEventListener('click', closePaymentModal);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closePaymentModal);
+  }
   
   // Dismiss on clicking background overlay
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closePaymentModal();
-  });
-
-  // Handle Tab Switch
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabButtons.forEach(b => b.classList.remove('active-tab'));
-      panels.forEach(p => p.classList.remove('active-panel'));
-      
-      btn.classList.add('active-tab');
-      const targetId = btn.getAttribute('data-target');
-      document.getElementById(targetId).classList.add('active-panel');
-    });
-  });
-
-  // Submit payment listeners
-  const payOnlineBtn = document.getElementById('btn-pay-razorpay');
-  const payCodBtn = document.getElementById('btn-pay-cod');
-
-  const startPaymentProcessing = (methodName) => {
-    document.getElementById('payment-input-container').style.display = 'none';
-    const processingSection = document.getElementById('payment-processing-container');
-    const stageLabel = document.getElementById('payment-stage-text');
-    processingSection.style.display = 'flex';
-
-    // Simulate multi-stage authorization timeline
-    const stages = [
-      "Connecting to online gateway protocols...",
-      "Encrypting customer transaction payloads...",
-      "Authorizing merchant ledger payment...",
-      "Generating invoice confirmation receipt..."
-    ];
-
-    let currentStageIndex = 0;
-    const interval = setInterval(() => {
-      if (currentStageIndex < stages.length) {
-        stageLabel.innerText = stages[currentStageIndex];
-        currentStageIndex++;
-      } else {
-        clearInterval(interval);
-        finalizeTransaction(methodName);
-      }
-    }, 800);
-  };
-
-  if (payOnlineBtn) {
-    payOnlineBtn.addEventListener('click', () => {
-      // Check if Razorpay is loaded and the key is customized
-      if (typeof Razorpay !== 'undefined' && razorpayConfig.keyId && !razorpayConfig.keyId.includes('YOUR_')) {
-        const options = {
-          "key": razorpayConfig.keyId,
-          "amount": activePaymentAmount * 100, // Amount is in paise subunits (e.g. 1000 paise = 10 INR)
-          "currency": "INR",
-          "name": "The Shakti Pharma",
-          "description": "Online Order Payment",
-          "handler": function (response) {
-            finalizeTransaction("Razorpay Online");
-            showToast("Payment Authorized! Payment ID: " + response.razorpay_payment_id);
-          },
-          "prefill": {
-            "name": Store.currentUser ? Store.currentUser.name : "",
-            "email": Store.currentUser ? Store.currentUser.email : "",
-            "contact": Store.currentUser ? Store.currentUser.phone : ""
-          },
-          "theme": {
-            "color": "#12372a"
-          }
-        };
-        const rzp = new Razorpay(options);
-        rzp.open();
-      } else {
-        // Fallback: Simulate processing loader screen
-        console.warn("⚠️ Razorpay Key ID not configured. Simulating card checkout...");
-        startPaymentProcessing("Online Card/UPI");
-      }
-    });
-  }
-
-  if (payCodBtn) {
-    payCodBtn.addEventListener('click', () => {
-      // Direct placement of cash on delivery order
-      finalizeTransaction("Cash on Delivery (COD)");
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closePaymentModal();
     });
   }
 
   // Back button on receipt
-  document.getElementById('btn-payment-done').addEventListener('click', () => {
-    closePaymentModal();
-    window.location.hash = '#products';
-  });
+  const doneBtn = document.getElementById('btn-payment-done');
+  if (doneBtn) {
+    doneBtn.addEventListener('click', () => {
+      closePaymentModal();
+      window.location.hash = '#products';
+    });
+  }
 }
 
 // Finalize order writing to localStorage and update cart

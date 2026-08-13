@@ -801,8 +801,10 @@
         <!-- View 3: Success Receipt (hidden by default) -->
         <div id="payment-success-container" class="processing-container" style="display:none;">
           <div class="checkmark-circle">✓</div>
-          <h4 class="brand-font" style="font-size:1.6rem; color:var(--success);">Payment Successful!</h4>
-          <p style="font-size:0.9rem; color:var(--text-light); margin-bottom:1rem;">Your order has been recorded and is being prepared for shipment from Kasganj.</p>
+          <h4 class="brand-font" style="font-size:1.6rem; color:var(--success);">Order Successful!</h4>
+          <p style="font-size:0.9rem; color:var(--text-light); margin-bottom:1.5rem; line-height:1.5;">
+            Order successful, we'll contact you soon on WhatsApp on the same number you have given.
+          </p>
           
           <div style="background:var(--sage-light); border-radius:var(--radius-sm); padding:1rem; width:100%; text-align:left; font-size:0.85rem; line-height:1.5; border:1px solid var(--border-color);" id="receipt-details">
             <!-- Receipt information loaded via JS -->
@@ -945,8 +947,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-  <!-- Razorpay Checkout SDK -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 
   <script src="app.js"></script>
 </body>
