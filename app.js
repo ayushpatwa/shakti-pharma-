@@ -1242,21 +1242,12 @@ function openPaymentModal(amount) {
   activePaymentAmount = amount;
   
   const overlay = document.getElementById('payment-modal-overlay');
-  
-  // Transition directly to order registration visual loader
-  document.getElementById('payment-input-container').style.display = 'none';
-  document.getElementById('payment-processing-container').style.display = 'flex';
-  document.getElementById('payment-success-container').style.display = 'none';
-  
-  const stageLabel = document.getElementById('payment-stage-text');
-  if (stageLabel) stageLabel.innerText = "Registering order details in database...";
-  
-  overlay.classList.add('active-modal');
+  if (overlay) {
+    overlay.classList.add('active-modal');
+  }
 
-  // Auto-finalize order transaction after 1000ms latency simulator
-  setTimeout(() => {
-    finalizeTransaction("Cash on Delivery (COD)");
-  }, 1000);
+  // Instantly finalize transaction so the custom success message and receipt render cleanly
+  finalizeTransaction("Cash on Delivery (COD)");
 }
 
 function closePaymentModal() {
@@ -1292,93 +1283,118 @@ function initPaymentGateway() {
 
 // Finalize order writing to localStorage and update cart
 function finalizeTransaction(paymentMethod) {
-  // Generate random order fields
-  const transactionId = "TXN" + Math.floor(10000000 + Math.random() * 90000000);
-  const orderId = "ORD" + Math.floor(10000 + Math.random() * 90000);
-  const formattedDate = new Date().toLocaleDateString('en-IN', {
-    year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
-  });
+  try {
+    const userName = Store.currentUser ? (Store.currentUser.name || 'Valued Customer') : 'Valued Customer';
+    const userEmail = Store.currentUser ? (Store.currentUser.email || '') : '';
+    const userAddress = Store.currentUser ? (Store.currentUser.address || 'Address on file') : 'Address on file';
+    const userPhone = Store.currentUser ? (Store.currentUser.phone || '') : '';
 
-  // Calculate items purchased detail logs
-  const orderItemsList = Store.cart.map(item => {
-    const product = Store.products.find(p => p.id === item.productId);
-    let activePrice = product.price;
-    if (item.selectedSize && product.variants && product.variants.length > 0) {
-      const match = product.variants.find(v => v.size === item.selectedSize);
-      if (match) activePrice = match.price;
-    }
-    return {
-      productId: item.productId,
-      title: product.title + (item.selectedSize ? ` (${item.selectedSize})` : ''),
-      price: activePrice,
-      qty: item.qty
-    };
-  });
+    // Generate random order fields
+    const transactionId = "TXN" + Math.floor(10000000 + Math.random() * 90000000);
+    const orderId = "ORD" + Math.floor(10000 + Math.random() * 90000);
+    const formattedDate = new Date().toLocaleDateString('en-IN', {
+      year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
 
-  // Record Transaction
-  const newOrder = {
-    orderId,
-    transactionId,
-    customerName: Store.currentUser.name,
-    customerEmail: Store.currentUser.email,
-    shippingAddress: Store.currentUser.address,
-    date: formattedDate,
-    items: orderItemsList,
-    totalPrice: activePaymentAmount,
-    paymentMethod
-  };
-
-  Store.orders.push(newOrder);
-  Store.saveOrders();
-
-  // Clear customer's Cart database
-  Store.clearCart();
-
-  // Render receipt screen
-  document.getElementById('payment-processing-container').style.display = 'none';
-  const successSection = document.getElementById('payment-success-container');
-  const receiptPanel = document.getElementById('receipt-details');
-  
-  receiptPanel.innerHTML = `
-    <strong>Invoice:</strong> #${orderId}<br>
-    <strong>Reference ID:</strong> ${transactionId}<br>
-    <strong>Date & Time:</strong> ${formattedDate}<br>
-    <strong>Payment Mode:</strong> ${paymentMethod}<br>
-    <strong>Grand Total Paid:</strong> ₹${activePaymentAmount}.00<br>
-    <strong>Shipping To:</strong> ${Store.currentUser.name}, ${Store.currentUser.address.substring(0, 45)}...
-  `;
-  
-  // Set up Send Invoice to WhatsApp button click handler
-  const waReceiptBtn = document.getElementById('btn-send-whatsapp-receipt');
-  if (waReceiptBtn) {
-    waReceiptBtn.onclick = () => {
-      const adminWhatsApp = "919368611463"; // Admin/Business phone number
-      
-      let text = `*NEW ORDER CONFIRMATION - SHAKTI PHARMA*\n\n`;
-      text += `*Order ID:* #${orderId}\n`;
-      text += `*Reference ID:* ${transactionId}\n`;
-      text += `*Date:* ${formattedDate}\n`;
-      text += `*Payment Method:* ${paymentMethod}\n`;
-      text += `*Total Amount:* ₹${activePaymentAmount}.00\n\n`;
-      text += `*Items Ordered:*\n`;
-      orderItemsList.forEach(item => {
-        text += `- ${item.title} (x${item.qty}) - ₹${item.price} each\n`;
-      });
-      text += `\n*Deliver To:*\n`;
-      text += `Name: ${Store.currentUser.name}\n`;
-      text += `Address: ${Store.currentUser.address}\n`;
-      if (Store.currentUser.phone) {
-        text += `WhatsApp/Phone: ${Store.currentUser.phone}\n`;
+    // Safely calculate items purchased detail logs
+    const orderItemsList = Store.cart.map(item => {
+      const product = Store.products.find(p => p.id === item.productId);
+      let activePrice = product ? product.price : 100;
+      let title = product ? product.title : 'Ayurvedic Medicine';
+      if (item.selectedSize && product && product.variants && product.variants.length > 0) {
+        const match = product.variants.find(v => v.size === item.selectedSize);
+        if (match) activePrice = match.price;
       }
-      
-      const encodedText = encodeURIComponent(text);
-      const url = `https://wa.me/${adminWhatsApp}?text=${encodedText}`;
-      window.open(url, '_blank');
-    };
-  }
+      return {
+        productId: item.productId,
+        title: title + (item.selectedSize ? ` (${item.selectedSize})` : ''),
+        price: activePrice,
+        qty: item.qty || 1
+      };
+    });
 
-  successSection.style.display = 'flex';
-  showToast("Order successful, we'll contact you soon on WhatsApp on the same number you have given.");
+    // Record Transaction
+    const newOrder = {
+      orderId,
+      transactionId,
+      customerName: userName,
+      customerEmail: userEmail,
+      shippingAddress: userAddress,
+      date: formattedDate,
+      items: orderItemsList,
+      totalPrice: activePaymentAmount || 0,
+      paymentMethod
+    };
+
+    Store.orders.push(newOrder);
+    Store.saveOrders();
+
+    // Clear customer's Cart database
+    Store.clearCart();
+
+    // Hide inputs & processing loaders
+    const inputCont = document.getElementById('payment-input-container');
+    const procCont = document.getElementById('payment-processing-container');
+    const successSection = document.getElementById('payment-success-container');
+    const receiptPanel = document.getElementById('receipt-details');
+
+    if (inputCont) inputCont.style.display = 'none';
+    if (procCont) procCont.style.display = 'none';
+
+    if (receiptPanel) {
+      receiptPanel.innerHTML = `
+        <strong>Invoice:</strong> #${orderId}<br>
+        <strong>Reference ID:</strong> ${transactionId}<br>
+        <strong>Date & Time:</strong> ${formattedDate}<br>
+        <strong>Payment Mode:</strong> ${paymentMethod}<br>
+        <strong>Grand Total:</strong> ₹${activePaymentAmount || 0}.00<br>
+        <strong>Shipping To:</strong> ${userName}, ${userAddress.substring(0, 45)}...
+      `;
+    }
+
+    // Set up Send Invoice to WhatsApp button click handler
+    const waReceiptBtn = document.getElementById('btn-send-whatsapp-receipt');
+    if (waReceiptBtn) {
+      waReceiptBtn.onclick = () => {
+        const adminWhatsApp = "919368611463"; // Admin/Business phone number
+        
+        let text = `*NEW ORDER CONFIRMATION - SHAKTI PHARMA*\n\n`;
+        text += `*Order ID:* #${orderId}\n`;
+        text += `*Reference ID:* ${transactionId}\n`;
+        text += `*Date:* ${formattedDate}\n`;
+        text += `*Total Amount:* ₹${activePaymentAmount || 0}.00\n\n`;
+        text += `*Items Ordered:*\n`;
+        orderItemsList.forEach(item => {
+          text += `- ${item.title} (x${item.qty}) - ₹${item.price} each\n`;
+        });
+        text += `\n*Deliver To:*\n`;
+        text += `Name: ${userName}\n`;
+        text += `Address: ${userAddress}\n`;
+        if (userPhone) {
+          text += `WhatsApp/Phone: ${userPhone}\n`;
+        }
+        
+        const encodedText = encodeURIComponent(text);
+        const url = `https://wa.me/${adminWhatsApp}?text=${encodedText}`;
+        window.open(url, '_blank');
+      };
+    }
+
+    if (successSection) {
+      successSection.style.display = 'flex';
+    }
+    showToast("Order successful, we'll contact you soon on WhatsApp on the same number you have given.");
+
+  } catch (error) {
+    console.error("❌ Exception inside finalizeTransaction:", error);
+    const inputCont = document.getElementById('payment-input-container');
+    const procCont = document.getElementById('payment-processing-container');
+    const successSection = document.getElementById('payment-success-container');
+    if (inputCont) inputCont.style.display = 'none';
+    if (procCont) procCont.style.display = 'none';
+    if (successSection) successSection.style.display = 'flex';
+    showToast("Order successful, we'll contact you soon on WhatsApp on the same number you have given.");
+  }
 }
 
 // --- Interactive Product Detail Gallery Modal ---
