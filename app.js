@@ -561,6 +561,9 @@ const Store = {
   clearCart() {
     this.cart = [];
     this.saveCart();
+    if (typeof renderCartStore === 'function') {
+      renderCartStore();
+    }
   },
 
   addToCart(productId, qty = 1, showNotification = true, selectedSize = null) {
