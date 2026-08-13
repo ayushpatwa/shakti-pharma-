@@ -1378,7 +1378,7 @@ function finalizeTransaction(paymentMethod) {
   }
 
   successSection.style.display = 'flex';
-  showToast("Order placed successfully! Confetti simulated.");
+  showToast("Order successful, we'll contact you soon on WhatsApp on the same number you have given.");
 }
 
 // --- Interactive Product Detail Gallery Modal ---
