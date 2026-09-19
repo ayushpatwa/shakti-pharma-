@@ -344,83 +344,91 @@ const Store = {
     }
   },
 
-  async syncFirebaseBackground() {
+  syncFirebaseBackground() {
     try {
-      // Synchronize Products
-      const productsSnap = await db.collection('products').get();
-      if (productsSnap.empty) {
-        // Seeding database
-        console.log("🌱 Database is empty. Seeding Firestore with default products...");
-        for (const prod of this.products) {
-          await db.collection('products').doc(prod.id).set(prod);
-        }
-      } else {
-        const freshProducts = [];
-        productsSnap.forEach(doc => {
-          const data = doc.data();
-          if (data && data.id && data.title) {
-            freshProducts.push(data);
-          } else {
-            console.warn("Removing corrupt Firestore document:", doc.id);
-            db.collection('products').doc(doc.id).delete().catch(err => console.error(err));
+      // 1. Real-time Products Sync across all devices
+      db.collection('products').onSnapshot(productsSnap => {
+        if (productsSnap.empty) {
+          console.log("🌱 Firestore products collection is empty. Seeding default products...");
+          for (const prod of this.products) {
+            db.collection('products').doc(prod.id).set(prod).catch(err => console.error(err));
           }
-        });
-        
-        // Set default images and dosage from defaults matching logic if not already customized
-        freshProducts.forEach(p => {
-          const match = defaultProducts.find(dp => dp.id === p.id);
-          if (match) {
-            if (!p.image) p.image = match.image;
-            if (!p.images || p.images.length === 0) p.images = [...match.images];
-            if (!p.dosage) p.dosage = match.dosage;
+        } else {
+          const freshProducts = [];
+          productsSnap.forEach(doc => {
+            const data = doc.data();
+            if (data && data.id && data.title) {
+              freshProducts.push(data);
+            } else {
+              console.warn("Removing corrupt Firestore document:", doc.id);
+              db.collection('products').doc(doc.id).delete().catch(err => console.error(err));
+            }
+          });
+          
+          // Apply fallback images/dosage from default catalog if unassigned
+          freshProducts.forEach(p => {
+            const match = defaultProducts.find(dp => dp.id === p.id);
+            if (match) {
+              if (!p.image) p.image = match.image;
+              if (!p.images || p.images.length === 0) p.images = [...match.images];
+              if (!p.dosage) p.dosage = match.dosage;
+            }
+          });
+          
+          this.products = freshProducts;
+          localStorage.setItem('shakti_products', JSON.stringify(this.products));
+          
+          // Instantly refresh UI on all active devices
+          if (typeof renderProductsStore === 'function') renderProductsStore();
+          if (typeof renderAdminProductList === 'function') renderAdminProductList();
+        }
+      }, err => {
+        console.warn("⚠️ Real-time Products sync warning:", err);
+      });
+
+      // 2. Real-time Users & Customer Database Sync
+      db.collection('users').onSnapshot(usersSnap => {
+        if (!usersSnap.empty) {
+          this.users = [];
+          usersSnap.forEach(doc => {
+            this.users.push(doc.data());
+          });
+          localStorage.setItem('shakti_users', JSON.stringify(this.users));
+          if (typeof renderAdminCustomersList === 'function') renderAdminCustomersList();
+        } else {
+          if (this.users.length > 0) {
+            this.users.forEach(u => {
+              const safeId = u.email.replace(/\./g, '_');
+              db.collection('users').doc(safeId).set(u).catch(err => console.error(err));
+            });
           }
-        });
-        
-        this.products = freshProducts;
-        localStorage.setItem('shakti_products', JSON.stringify(this.products));
-        
-        // Refresh product displays
-        renderProductsStore();
-        renderAdminProductList();
-      }
-
-      // Synchronize Users
-      const usersSnap = await db.collection('users').get();
-      if (!usersSnap.empty) {
-        this.users = [];
-        usersSnap.forEach(doc => {
-          this.users.push(doc.data());
-        });
-        localStorage.setItem('shakti_users', JSON.stringify(this.users));
-      } else {
-        // Seed users to cloud if database was empty
-        if (this.users.length > 0) {
-          this.users.forEach(async (u) => {
-            const safeId = u.email.replace(/\./g, '_');
-            await db.collection('users').doc(safeId).set(u);
-          });
         }
-      }
+      }, err => {
+        console.warn("⚠️ Real-time Users sync warning:", err);
+      });
 
-      // Synchronize Orders
-      const ordersSnap = await db.collection('orders').get();
-      if (!ordersSnap.empty) {
-        this.orders = [];
-        ordersSnap.forEach(doc => {
-          this.orders.push(doc.data());
-        });
-        localStorage.setItem('shakti_orders', JSON.stringify(this.orders));
-        renderAdminOrdersList();
-      } else {
-        // Seed orders to cloud if database was empty
-        if (this.orders.length > 0) {
-          this.orders.forEach(async (order) => {
-            await db.collection('orders').doc(order.orderId).set(order);
+      // 3. Real-time Orders Sync across all devices
+      db.collection('orders').onSnapshot(ordersSnap => {
+        if (!ordersSnap.empty) {
+          this.orders = [];
+          ordersSnap.forEach(doc => {
+            this.orders.push(doc.data());
           });
+          localStorage.setItem('shakti_orders', JSON.stringify(this.orders));
+          if (typeof renderAdminOrdersList === 'function') renderAdminOrdersList();
+        } else {
+          if (this.orders.length > 0) {
+            this.orders.forEach(order => {
+              db.collection('orders').doc(order.orderId).set(order).catch(err => console.error(err));
+            });
+          }
         }
-      }
+      }, err => {
+        console.warn("⚠️ Real-time Orders sync warning:", err);
+      });
+
     } catch (err) {
-      console.warn("⚠️ Firebase background sync failed (using local data cache):", err);
+      console.warn("⚠️ Firebase background real-time sync failed (using local data cache):", err);
     }
   },
 
