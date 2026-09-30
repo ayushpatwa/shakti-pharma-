@@ -216,7 +216,7 @@ const defaultProducts = [
     title: "Mini Drops",
     category: "Pediatrics",
     price: 110,
-    description: "Soothing pediatric carminative drops for infants. Safely relieves stomach colic pain, flatulence, gas spasms, and teething irritability.",
+    description: "Quick Relief from Discomfort situation — Herbal Digestant for Infants & Children. Treats indigestion, loss of appetite and dyspepsia, regulates peristalsis movement, acts as a carminative & bioavailability enhancer, and strengthens the digestive system of babies.",
     ingredients: "Dil Oil, Soya Oil, Pudina Satva, Sarjikakshara",
     image: "images/mini drops/2f1eab46-f1f2-4eb5-9b0a-df7e1bd8dd35.png",
     images: [
