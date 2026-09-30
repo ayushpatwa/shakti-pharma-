@@ -44,7 +44,7 @@ const defaultProducts = [
     title: "Female Cordial",
     category: "Women's Health",
     price: 145,
-    description: "A premium uterine restorative tonic designed to treat physiological disorders, regulate menstrual cycles, ease menopausal syndromes, and relieve general fatigue.",
+    description: "A Boon For Ladies - Effective tonic for female physiology. Unique remedy for menstrual complaints, acts directly on uterine muscles, increases motor activity of the uterus, stimulates ovaries, corrects backache & irregular menses, tones genito-urinary organs, and treats & prevents Leucorrhea, Dysmenorrhea, Menorrhagia and other menstrual disturbances.",
     ingredients: "Ashoka, Lodhra, Shatavari, Ashwagandha, Triphala, Mulethi",
     image: "images/female cordial/39a0170c-2509-40ab-9900-507a166059bd.png",
     images: [
@@ -62,7 +62,7 @@ const defaultProducts = [
     title: "Asmarin Syrup",
     category: "Respiratory Care",
     price: 180,
-    description: "Highly effective bronchodilator syrup that provides rapid relief in bronchial asthma, allergic bronchitis, wheezing, and chronic respiratory congestion.",
+    description: "For prompt and prolonged relief from Bronchial Asthma. Rational combination of indigenous herbs that soothes acute inflammation by stimulating protective secretion, possesses exceptional tranquilizing properties, relaxes smooth muscles of the bronchi, and aids in prophylaxis of Bronchial Asthma, Spasmodic Bronchitis & Whooping Cough.",
     ingredients: "Vasa, Somlata, Kantkari, Yashtimadhu, Bharangi, Tulsi",
     image: "images/asmarin 3/a7c5c0ec-663f-4f8a-9d98-b2d6c6d4aa08.png",
     images: [
@@ -78,7 +78,7 @@ const defaultProducts = [
     title: "Hemotone Tonic",
     category: "Restorative Tonics",
     price: 165,
-    description: "Iron-rich herbal health supplement to treat anemia, optimize hemoglobin counts, support blood purification, and promote overall vitality and physical recovery.",
+    description: "Restorative Tonic for Rapid Recovery & General Health (palatable and pleasant chocolate flavoured). Necessary for growing children, pregnant & lactating women, and adults during convalescence & rundown conditions. Restores appetite & accelerates recovery, fights fatigue and stress, maintains a healthy heart and body, natural source of vitamins & minerals, restores and increases confidence, and can be used for both sexes.",
     ingredients: "Lauh Bhasma, Punarnava, Draksha, Amalaki, Haritaki",
     image: "images/hemotone/7e5bb579-7301-4f15-9f85-3780efe0c559.png",
     images: [
@@ -96,7 +96,7 @@ const defaultProducts = [
     title: "Damarin Drops",
     category: "Pediatrics",
     price: 120,
-    description: "Specialized pediatric drop formulation aiding fast recovery from whooping cough, spasmodic cough, acute infantile bronchitis, and teething-related gripes.",
+    description: "Essential remedy when little ones are troubled with cold & cough. Makes expectoration easy and smooth, decreases production of muco-purulent & foul-smelling sputum, highly effective in WHOOPING COUGH, ACUTE BRONCHITIS and SORE THROAT, promotes undisturbed sleep, and is completely safe for infants and children.",
     ingredients: "Vasaka, Kantakari, Pippali, Yashtimadhu, Honey",
     image: "images/damarin'/54af6678-96d4-4605-a218-f163be406469.png",
     images: [
@@ -131,7 +131,7 @@ const defaultProducts = [
     title: "Bal Ghutti",
     category: "Pediatrics",
     price: 95,
-    description: "Traditional infant health drops that ease flatulence, support healthy digestion, stimulate stomachic actions, and relieve general constipation in babies.",
+    description: "An effective, safe and essential remedy for the little patient. Digestive and tonic for children and infants that improves general health of babies. Efficacious in dyspepsia, indigestion, general weakness and other gastric problems. Strengthening for stomach, liver, spleen etc., and cures many ailments e.g. Rickets, Fever, Cough, Liver dysfunction, Diarrhoea, Milk vomiting etc. A nutritional and pleasant tonic.",
     ingredients: "Amaltas, Haritaki, Ajwain, Sohaga, Mulethi, Senna",
     image: "images/bal ghutti/443847a6-b214-4c08-a7fa-45f083cc209f.png",
     images: [
@@ -372,6 +372,7 @@ const Store = {
               if (!p.image) p.image = match.image;
               if (!p.images || p.images.length === 0) p.images = [...match.images];
               if (!p.dosage) p.dosage = match.dosage;
+              if (match.description) p.description = match.description;
             }
           });
           
@@ -463,6 +464,7 @@ const Store = {
         if (!p.dosage) {
           p.dosage = match.dosage;
         }
+        if (match.description) p.description = match.description;
       } else {
         if (!p.dosage) {
           p.dosage = "Take 1 to 2 teaspoonfuls (5-10 ml) twice daily after meals, or as directed by a physician.";
