@@ -113,7 +113,7 @@ const defaultProducts = [
     title: "Livero Syrup",
     category: "Liver Care",
     price: 150,
-    description: "Rejuvenating hepatoprotective syrup to reverse jaundice, correct liver enlargement, counter drug-induced liver toxicity, and stimulate natural appetite.",
+    description: "Protect & Rejuvenate the LIVER — A dependable remedy for liver troubles. Indicated in alcoholic and metabolic liver disorders, toxic, infective & viral hepatitis, non-obstructive jaundice, cirrhosis of the liver, mineral deficiency diseases, and helps in liver cell regeneration & all other liver troubles.",
     ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
     image: "images/livero/235db2bc-95da-468b-9857-34234de0828f.png",
     images: [
@@ -149,7 +149,7 @@ const defaultProducts = [
     title: "Kasol Cough Syrup",
     category: "Cough & Cold",
     price: 115,
-    description: "Soothing herbal non-drowsy cough formula that liquefies thick mucus, relieves throat irritation, and checks recurring spasmodic throat infections.",
+    description: "An outstanding medicine for COUGH & COLD. Subdues cough immediately, loosens the mucous in bronchial passages, facilitates expectoration, highly effective in U.R.T.I., suitable for all ages, acts as a good bronchodilator, well tolerated with pleasant taste, and inhibits Tubercle Bacillus.",
     ingredients: "Tulsi, Mulethi, Pippali, Banaphsha, Satva Pudina, Honey",
     image: "images/kasol/6f280d5d-5422-4050-9678-49523bd41baa.png",
     images: [
@@ -199,7 +199,7 @@ const defaultProducts = [
     title: "M-28 Syrup",
     category: "Women's Health",
     price: 195,
-    description: "Premium Ayurvedic uterine tonic for women. Helps balance hormones, manages menstrual irregularities, and restores physical vitality.",
+    description: "A tried and tested drug to restore women's health. Multi-directional action over the body of women, re-establishes normal physiology in all respects, bestows absolute feminine health by natural medicines, corrects body imbalances without side or after effects, and is completely safe even if used for prolonged time. Balanced action of Ashoka, Amla, Punarnava, Vridhdaruk etc.",
     ingredients: "Ashoka, Lodhra, Shatavari, Ashwagandha, Dashmoola",
     image: "images/m-28/15eb0dc6-8693-416e-8fa7-54ba94af1150.png",
     images: [
@@ -267,7 +267,7 @@ const defaultProducts = [
     title: "Vomitex Drops",
     category: "Pediatrics",
     price: 105,
-    description: "Fast-acting herbal anti-emetic drops that control nausea, motion sickness, vomiting, and acid reflux in infants and young children.",
+    description: "The proven herbal antinauseant and antiemetic medicine (when safety is your concern and efficacy is your need). Highly effective, safe and gentle in all patients. Specially recommended in Hyperemesis gravidarum. With additional benefit of GINGER (as effective as Metoclopramide in managing nausea & vomiting). Free from drowsiness and extrapyramidal symptoms. Indicated in nausea & vomiting associated with any disease, travel and motion sickness, and morning sickness of pregnancy.",
     ingredients: "Elaichi, Pudina, Kapoor, Dalchini, Jaiphal, Nimbu",
     image: "images/vomitex/fca5280f-8a81-4343-b171-057f5ae84b09.png",
     images: [
@@ -300,7 +300,7 @@ const defaultProducts = [
     title: "Livero Drops",
     category: "Pediatrics",
     price: 110,
-    description: "Gentle pediatric liver drops designed to regulate digestion, correct infant colic, relieve loss of appetite, and support healthy liver functioning in babies.",
+    description: "Hepatoprotective and Hepatocorrective — An ideal formula & unique remedy for liver disorders in infants. Restores normal liver functions, corrects many liver disorders, most valuable in toxic, viral & infective hepatitis and jaundice, effective in infantile cirrhosis of the liver, and improves the digestive system.",
     ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
     image: "images/livero drops/bf4a698f-b089-415f-98bd-3031fde6f6cc.png",
     images: [
