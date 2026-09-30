@@ -43,7 +43,12 @@ const defaultProducts = [
     id: "p1",
     title: "Female Cordial",
     category: "Women's Health",
-    price: 145,
+    price: 131,
+    variants: [
+      { size: "100ml", price: 75 },
+      { size: "200ml", price: 131 },
+      { size: "400ml", price: 227 }
+    ],
     description: "A Boon For Ladies - Effective tonic for female physiology. Unique remedy for menstrual complaints, acts directly on uterine muscles, increases motor activity of the uterus, stimulates ovaries, corrects backache & irregular menses, tones genito-urinary organs, and treats & prevents Leucorrhea, Dysmenorrhea, Menorrhagia and other menstrual disturbances.",
     ingredients: "Ashoka, Lodhra, Shatavari, Ashwagandha, Triphala, Mulethi",
     image: "images/female cordial/39a0170c-2509-40ab-9900-507a166059bd.png",
@@ -61,7 +66,11 @@ const defaultProducts = [
     id: "p2",
     title: "Asmarin Syrup",
     category: "Respiratory Care",
-    price: 180,
+    price: 83,
+    variants: [
+      { size: "50ml", price: 62 },
+      { size: "100ml", price: 83 }
+    ],
     description: "For prompt and prolonged relief from Bronchial Asthma. Rational combination of indigenous herbs that soothes acute inflammation by stimulating protective secretion, possesses exceptional tranquilizing properties, relaxes smooth muscles of the bronchi, and aids in prophylaxis of Bronchial Asthma, Spasmodic Bronchitis & Whooping Cough.",
     ingredients: "Vasa, Somlata, Kantkari, Yashtimadhu, Bharangi, Tulsi",
     image: "images/asmarin 3/a7c5c0ec-663f-4f8a-9d98-b2d6c6d4aa08.png",
@@ -77,7 +86,11 @@ const defaultProducts = [
     id: "p3",
     title: "Hemotone Tonic",
     category: "Restorative Tonics",
-    price: 165,
+    price: 131,
+    variants: [
+      { size: "100ml", price: 75 },
+      { size: "200ml", price: 131 }
+    ],
     description: "Restorative Tonic for Rapid Recovery & General Health (palatable and pleasant chocolate flavoured). Necessary for growing children, pregnant & lactating women, and adults during convalescence & rundown conditions. Restores appetite & accelerates recovery, fights fatigue and stress, maintains a healthy heart and body, natural source of vitamins & minerals, restores and increases confidence, and can be used for both sexes.",
     ingredients: "Lauh Bhasma, Punarnava, Draksha, Amalaki, Haritaki",
     image: "images/hemotone/7e5bb579-7301-4f15-9f85-3780efe0c559.png",
@@ -95,7 +108,10 @@ const defaultProducts = [
     id: "p4",
     title: "Damarin Drops",
     category: "Pediatrics",
-    price: 120,
+    price: 52,
+    variants: [
+      { size: "30ml", price: 52 }
+    ],
     description: "Essential remedy when little ones are troubled with cold & cough. Makes expectoration easy and smooth, decreases production of muco-purulent & foul-smelling sputum, highly effective in WHOOPING COUGH, ACUTE BRONCHITIS and SORE THROAT, promotes undisturbed sleep, and is completely safe for infants and children.",
     ingredients: "Vasaka, Kantakari, Pippali, Yashtimadhu, Honey",
     image: "images/damarin'/54af6678-96d4-4605-a218-f163be406469.png",
@@ -112,7 +128,11 @@ const defaultProducts = [
     id: "p5",
     title: "Livero Syrup",
     category: "Liver Care",
-    price: 150,
+    price: 124,
+    variants: [
+      { size: "100ml", price: 65 },
+      { size: "200ml", price: 124 }
+    ],
     description: "Protect & Rejuvenate the LIVER — A dependable remedy for liver troubles. Indicated in alcoholic and metabolic liver disorders, toxic, infective & viral hepatitis, non-obstructive jaundice, cirrhosis of the liver, mineral deficiency diseases, and helps in liver cell regeneration & all other liver troubles.",
     ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
     image: "images/livero/235db2bc-95da-468b-9857-34234de0828f.png",
@@ -130,7 +150,10 @@ const defaultProducts = [
     id: "p7",
     title: "Bal Ghutti",
     category: "Pediatrics",
-    price: 95,
+    price: 53,
+    variants: [
+      { size: "50ml", price: 53 }
+    ],
     description: "An effective, safe and essential remedy for the little patient. Digestive and tonic for children and infants that improves general health of babies. Efficacious in dyspepsia, indigestion, general weakness and other gastric problems. Strengthening for stomach, liver, spleen etc., and cures many ailments e.g. Rickets, Fever, Cough, Liver dysfunction, Diarrhoea, Milk vomiting etc. A nutritional and pleasant tonic.",
     ingredients: "Amaltas, Haritaki, Ajwain, Sohaga, Mulethi, Senna",
     image: "images/bal ghutti/443847a6-b214-4c08-a7fa-45f083cc209f.png",
@@ -148,7 +171,11 @@ const defaultProducts = [
     id: "p8",
     title: "Kasol Cough Syrup",
     category: "Cough & Cold",
-    price: 115,
+    price: 83,
+    variants: [
+      { size: "50ml", price: 58 },
+      { size: "100ml", price: 83 }
+    ],
     description: "An outstanding medicine for COUGH & COLD. Subdues cough immediately, loosens the mucous in bronchial passages, facilitates expectoration, highly effective in U.R.T.I., suitable for all ages, acts as a good bronchodilator, well tolerated with pleasant taste, and inhibits Tubercle Bacillus.",
     ingredients: "Tulsi, Mulethi, Pippali, Banaphsha, Satva Pudina, Honey",
     image: "images/kasol/6f280d5d-5422-4050-9678-49523bd41baa.png",
@@ -165,7 +192,10 @@ const defaultProducts = [
     id: "p9",
     title: "Apitite Syrup",
     category: "Digestive Care",
-    price: 135,
+    price: 127,
+    variants: [
+      { size: "200ml", price: 127 }
+    ],
     description: "Effective Ayurvedic appetite stimulant and digestive tonic. Helps improve hunger, regulates bowel movements, and promotes overall digestive comfort.",
     ingredients: "Chitrak, Pippali, Haritaki, Ajwain, Jeerak, Shunthi",
     image: "images/apitite/77aade59-660e-4743-99f8-e67826964051.png",
@@ -183,6 +213,9 @@ const defaultProducts = [
     title: "Ayush Kwath",
     category: "Immunity Boosters",
     price: 155,
+    variants: [
+      { size: "100gm", price: 155 }
+    ],
     description: "Natural health protection powder recommended by the Ministry of AYUSH. Strengthens body defense mechanisms and supports general respiratory wellness.",
     ingredients: "Tulsi, Dalchini, Sunthi, Krishna Marich",
     image: "images/ayush kwath 3/39c11c28-bded-44ee-90c3-75c4a6e7eab0.png",
@@ -198,7 +231,11 @@ const defaultProducts = [
     id: "p11",
     title: "M-28 Syrup",
     category: "Women's Health",
-    price: 195,
+    price: 159,
+    variants: [
+      { size: "200ml", price: 159 },
+      { size: "400ml", price: 281 }
+    ],
     description: "A tried and tested drug to restore women's health. Multi-directional action over the body of women, re-establishes normal physiology in all respects, bestows absolute feminine health by natural medicines, corrects body imbalances without side or after effects, and is completely safe even if used for prolonged time. Balanced action of Ashoka, Amla, Punarnava, Vridhdaruk etc.",
     ingredients: "Ashoka, Lodhra, Shatavari, Ashwagandha, Dashmoola",
     image: "images/m-28/15eb0dc6-8693-416e-8fa7-54ba94af1150.png",
@@ -215,7 +252,10 @@ const defaultProducts = [
     id: "p12",
     title: "Mini Drops",
     category: "Pediatrics",
-    price: 110,
+    price: 52,
+    variants: [
+      { size: "30ml", price: 52 }
+    ],
     description: "Quick Relief from Discomfort situation — Herbal Digestant for Infants & Children. Treats indigestion, loss of appetite and dyspepsia, regulates peristalsis movement, acts as a carminative & bioavailability enhancer, and strengthens the digestive system of babies.",
     ingredients: "Dil Oil, Soya Oil, Pudina Satva, Sarjikakshara",
     image: "images/mini drops/2f1eab46-f1f2-4eb5-9b0a-df7e1bd8dd35.png",
@@ -232,7 +272,11 @@ const defaultProducts = [
     id: "p13",
     title: "Mobi Oil",
     category: "Pain Management",
-    price: 175,
+    price: 124,
+    variants: [
+      { size: "25ml", price: 83 },
+      { size: "50ml", price: 124 }
+    ],
     description: "Soothing pain relief liniment for joint pain, muscle strain, sprains, backache, and rheumatic disorders. Promotes fast warming actions.",
     ingredients: "Gandhapura Oil, Nilgiri Oil, Maha Narayan Oil, Kapoor, Pudina Satva",
     image: "images/mobi. oil/5d0a7e29-da49-404e-89cd-d8d9cae37bd8.png",
@@ -250,7 +294,11 @@ const defaultProducts = [
     id: "p14",
     title: "Rakto Purifier",
     category: "Blood Purifiers",
-    price: 140,
+    price: 158,
+    variants: [
+      { size: "100ml", price: 85 },
+      { size: "200ml", price: 158 }
+    ],
     description: "Natural blood purifying syrup that clears toxins, cleanses skin congestion, and checks pimples, acne, and recurring skin rashes.",
     ingredients: "Anantmool, Khadir, Neem, Manjistha, Gorakhmundi, Chirata",
     image: "images/rakto 3/a4d410e5-5931-4073-9f70-3c1a25b79020.png",
@@ -266,7 +314,11 @@ const defaultProducts = [
     id: "p15",
     title: "Vomitex Drops",
     category: "Pediatrics",
-    price: 105,
+    price: 90,
+    variants: [
+      { size: "50ml", price: 54 },
+      { size: "100ml", price: 90 }
+    ],
     description: "The proven herbal antinauseant and antiemetic medicine (when safety is your concern and efficacy is your need). Highly effective, safe and gentle in all patients. Specially recommended in Hyperemesis gravidarum. With additional benefit of GINGER (as effective as Metoclopramide in managing nausea & vomiting). Free from drowsiness and extrapyramidal symptoms. Indicated in nausea & vomiting associated with any disease, travel and motion sickness, and morning sickness of pregnancy.",
     ingredients: "Elaichi, Pudina, Kapoor, Dalchini, Jaiphal, Nimbu",
     image: "images/vomitex/fca5280f-8a81-4343-b171-057f5ae84b09.png",
@@ -283,6 +335,9 @@ const defaultProducts = [
     title: "Brain Syrup",
     category: "Restorative Tonics",
     price: 160,
+    variants: [
+      { size: "200ml", price: 160 }
+    ],
     description: "Superb Ayurvedic cognitive brain tonic formulated to enhance memory retention, boost concentration, relieve mental stress, and support overall nervous system health.",
     ingredients: "Brahmi, Shankhpushpi, Ashwagandha, Jyotishmati, Jatamansi, Vacha",
     image: "images/Brain syrup/cd54a287-434a-4bc5-b797-67e33f6107c9.png",
@@ -299,7 +354,10 @@ const defaultProducts = [
     id: "p17",
     title: "Livero Drops",
     category: "Pediatrics",
-    price: 110,
+    price: 52,
+    variants: [
+      { size: "30ml", price: 52 }
+    ],
     description: "Hepatoprotective and Hepatocorrective — An ideal formula & unique remedy for liver disorders in infants. Restores normal liver functions, corrects many liver disorders, most valuable in toxic, viral & infective hepatitis and jaundice, effective in infantile cirrhosis of the liver, and improves the digestive system.",
     ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
     image: "images/livero drops/bf4a698f-b089-415f-98bd-3031fde6f6cc.png",
@@ -369,6 +427,8 @@ const Store = {
           freshProducts.forEach(p => {
             const match = defaultProducts.find(dp => dp.id === p.id);
             if (match) {
+              p.price = match.price;
+              if (match.variants) p.variants = match.variants;
               if (!p.image) p.image = match.image;
               if (!p.images || p.images.length === 0) p.images = [...match.images];
               if (!p.dosage) p.dosage = match.dosage;
@@ -459,6 +519,8 @@ const Store = {
     this.products.forEach(p => {
       const match = defaultProducts.find(dp => dp.id === p.id);
       if (match) {
+        p.price = match.price;
+        if (match.variants) p.variants = match.variants;
         if (!p.image) p.image = match.image;
         if (!p.images || p.images.length === 0) p.images = [...match.images];
         if (!p.dosage) {
