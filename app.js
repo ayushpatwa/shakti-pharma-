@@ -427,12 +427,16 @@ const Store = {
           freshProducts.forEach(p => {
             const match = defaultProducts.find(dp => dp.id === p.id);
             if (match) {
+              const priceChanged = p.price !== match.price || !p.variants || JSON.stringify(p.variants) !== JSON.stringify(match.variants);
               p.price = match.price;
               if (match.variants) p.variants = match.variants;
               if (!p.image) p.image = match.image;
               if (!p.images || p.images.length === 0) p.images = [...match.images];
               if (!p.dosage) p.dosage = match.dosage;
               if (match.description) p.description = match.description;
+              if (priceChanged && isFirebaseActive && db) {
+                db.collection('products').doc(p.id).set(p).catch(err => console.error("Firestore price sync error:", err));
+              }
             }
           });
           
