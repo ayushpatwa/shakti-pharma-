@@ -49,7 +49,17 @@ const defaultProducts = [
       { size: "200ml", price: 131 },
       { size: "400ml", price: 227 }
     ],
+    tagline: "A Boon For Ladies — Effective Tonic for Female Physiology",
     description: "A Boon For Ladies - Effective tonic for female physiology. Unique remedy for menstrual complaints, acts directly on uterine muscles, increases motor activity of the uterus, stimulates ovaries, corrects backache & irregular menses, tones genito-urinary organs, and treats & prevents Leucorrhea, Dysmenorrhea, Menorrhagia and other menstrual disturbances.",
+    benefits: [
+      "Acts directly on the uterine musculature and improves tone",
+      "Stimulates normal functioning of ovaries and regulates hormonal balance",
+      "Effective in Leucorrhea, Dysmenorrhea, and Menorrhagia",
+      "Alleviates lower back pain, pelvic congestion, and fatigue",
+      "Improves motor activity of the uterus and tones genito-urinary organs",
+      "Corrects irregular menses and relieves premenstrual tension",
+      "Completely safe for long-term administration without side effects"
+    ],
     ingredients: "Ashoka, Lodhra, Shatavari, Ashwagandha, Triphala, Mulethi",
     image: "images/female cordial/39a0170c-2509-40ab-9900-507a166059bd.png",
     images: [
@@ -71,7 +81,15 @@ const defaultProducts = [
       { size: "50ml", price: 62 },
       { size: "100ml", price: 83 }
     ],
+    tagline: "For Prompt and Prolonged Relief from Bronchial Asthma",
     description: "For prompt and prolonged relief from Bronchial Asthma. Rational combination of indigenous herbs that soothes acute inflammation by stimulating protective secretion, possesses exceptional tranquilizing properties, relaxes smooth muscles of the bronchi, and aids in prophylaxis of Bronchial Asthma, Spasmodic Bronchitis & Whooping Cough.",
+    benefits: [
+      "Rational combination of indigenous herbs for respiratory comfort",
+      "Soothes acute inflammation by stimulating protective mucosal secretions",
+      "Possesses exceptional tranquilizing and anti-spasmodic properties",
+      "Relaxes smooth muscles of the bronchi and dilates airway passages",
+      "Aids in effective prophylaxis of Bronchial Asthma, Spasmodic Bronchitis & Whooping Cough"
+    ],
     ingredients: "Vasa, Somlata, Kantkari, Yashtimadhu, Bharangi, Tulsi",
     image: "images/asmarin 3/a7c5c0ec-663f-4f8a-9d98-b2d6c6d4aa08.png",
     images: [
@@ -91,7 +109,17 @@ const defaultProducts = [
       { size: "100ml", price: 75 },
       { size: "200ml", price: 131 }
     ],
+    tagline: "Restorative Tonic for Rapid Recovery — Chocolate Flavoured",
     description: "Restorative Tonic for Rapid Recovery & General Health (palatable and pleasant chocolate flavoured). Necessary for growing children, pregnant & lactating women, and adults during convalescence & rundown conditions. Restores appetite & accelerates recovery, fights fatigue and stress, maintains a healthy heart and body, natural source of vitamins & minerals, restores and increases confidence, and can be used for both sexes.",
+    benefits: [
+      "Necessary for growing children, pregnant & lactating women, and during convalescence",
+      "Restores appetite and accelerates rapid nutritional recovery",
+      "Fights fatigue, weakness, mental stress, and physical exhaustion",
+      "Maintains a healthy heart, hemoglobin levels, and body vitality",
+      "Rich natural source of herbal vitamins, bio-available iron, and minerals",
+      "Restores strength, stamina, and overall vitality for both men and women",
+      "Pleasant and palatable chocolate flavour easily accepted by children"
+    ],
     ingredients: "Lauh Bhasma, Punarnava, Draksha, Amalaki, Haritaki",
     image: "images/hemotone/7e5bb579-7301-4f15-9f85-3780efe0c559.png",
     images: [
@@ -112,7 +140,15 @@ const defaultProducts = [
     variants: [
       { size: "30ml", price: 52 }
     ],
+    tagline: "When Little Ones Are Troubled with Cold & Cough",
     description: "Essential remedy when little ones are troubled with cold & cough. Makes expectoration easy and smooth, decreases production of muco-purulent & foul-smelling sputum, highly effective in WHOOPING COUGH, ACUTE BRONCHITIS and SORE THROAT, promotes undisturbed sleep, and is completely safe for infants and children.",
+    benefits: [
+      "Makes expectoration smooth, easy, and painless for infants",
+      "Decreases production of thick, muco-purulent, and foul-smelling sputum",
+      "Highly effective in Whooping Cough, Acute Bronchitis, and Sore Throat",
+      "Promotes restful and undisturbed sleep by clearing chest congestion",
+      "Completely safe, gentle, and alcohol-free formula for babies and children"
+    ],
     ingredients: "Vasaka, Kantakari, Pippali, Yashtimadhu, Honey",
     image: "images/damarin'/54af6678-96d4-4605-a218-f163be406469.png",
     images: [
@@ -133,7 +169,17 @@ const defaultProducts = [
       { size: "100ml", price: 65 },
       { size: "200ml", price: 124 }
     ],
+    tagline: "Protect & Rejuvenate the LIVER — A Dependable Remedy for Liver Troubles",
     description: "Protect & Rejuvenate the LIVER — A dependable remedy for liver troubles. Indicated in alcoholic and metabolic liver disorders, toxic, infective & viral hepatitis, non-obstructive jaundice, cirrhosis of the liver, mineral deficiency diseases, and helps in liver cell regeneration & all other liver troubles.",
+    benefits: [
+      "Indicated in alcoholic, toxic, infective & viral hepatitis",
+      "Protects liver parenchyma against toxins, chemicals, and alcohol damage",
+      "Effective in non-obstructive jaundice and early stages of cirrhosis",
+      "Corrects sluggish liver, indigestion, loss of appetite, and nausea",
+      "Assists in healthy liver cell regeneration and enzymes revitalization",
+      "Corrects mineral deficiency diseases and improves metabolic absorption",
+      "Time-tested herbal hepato-protective formulation"
+    ],
     ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
     image: "images/livero/235db2bc-95da-468b-9857-34234de0828f.png",
     images: [
@@ -154,7 +200,16 @@ const defaultProducts = [
     variants: [
       { size: "50ml", price: 53 }
     ],
+    tagline: "An Effective, Safe and Essential Remedy for the Little Patient",
     description: "An effective, safe and essential remedy for the little patient. Digestive and tonic for children and infants that improves general health of babies. Efficacious in dyspepsia, indigestion, general weakness and other gastric problems. Strengthening for stomach, liver, spleen etc., and cures many ailments e.g. Rickets, Fever, Cough, Liver dysfunction, Diarrhoea, Milk vomiting etc. A nutritional and pleasant tonic.",
+    benefits: [
+      "Essential digestive tonic that improves general health & immunity of babies",
+      "Efficacious in infant dyspepsia, indigestion, flatulence, and griping pain",
+      "Strengthens stomach, liver, spleen, and intestinal tract",
+      "Cures common pediatric ailments: rickets, fever, milk vomiting, and diarrhea",
+      "Helps in easy teething by preventing fever, loose motions, and restlessness",
+      "Nutritional, safe, and pleasant herbal drops trusted by mothers"
+    ],
     ingredients: "Amaltas, Haritaki, Ajwain, Sohaga, Mulethi, Senna",
     image: "images/bal ghutti/443847a6-b214-4c08-a7fa-45f083cc209f.png",
     images: [
@@ -176,7 +231,17 @@ const defaultProducts = [
       { size: "50ml", price: 58 },
       { size: "100ml", price: 83 }
     ],
+    tagline: "An Outstanding Medicine for COUGH & COLD",
     description: "An outstanding medicine for COUGH & COLD. Subdues cough immediately, loosens the mucous in bronchial passages, facilitates expectoration, highly effective in U.R.T.I., suitable for all ages, acts as a good bronchodilator, well tolerated with pleasant taste, and inhibits Tubercle Bacillus.",
+    benefits: [
+      "Subdues dry, irritating, and allergic cough promptly without sedation",
+      "Loosens thick tenacious mucus in bronchial passages and eases expectoration",
+      "Highly effective in Upper Respiratory Tract Infections (U.R.T.I.) & pharyngitis",
+      "Acts as a natural bronchodilator and soothes inflamed throat tissues",
+      "Contains active herbal principles that help inhibit Tubercle Bacillus",
+      "Non-alcoholic, non-drowsy, well tolerated with a pleasant herbal taste",
+      "Safe for individuals of all age groups from children to elders"
+    ],
     ingredients: "Tulsi, Mulethi, Pippali, Banaphsha, Satva Pudina, Honey",
     image: "images/kasol/6f280d5d-5422-4050-9678-49523bd41baa.png",
     images: [
@@ -196,7 +261,14 @@ const defaultProducts = [
     variants: [
       { size: "200ml", price: 127 }
     ],
+    tagline: "Enzyme & Digestive Tonic for Natural Appetite",
     description: "Effective Ayurvedic appetite stimulant and digestive tonic. Helps improve hunger, regulates bowel movements, and promotes overall digestive comfort.",
+    benefits: [
+      "Stimulates salivary and gastric digestive enzyme secretion naturally",
+      "Eliminates anorexia, tastelessness, and chronic loss of appetite",
+      "Regulates bowel movements, eliminates bloating, and improves nutrient absorption",
+      "Improves digestion without causing acid rebound or gastric irritation"
+    ],
     ingredients: "Chitrak, Pippali, Haritaki, Ajwain, Jeerak, Shunthi",
     image: "images/apitite/77aade59-660e-4743-99f8-e67826964051.png",
     images: [
@@ -216,7 +288,14 @@ const defaultProducts = [
     variants: [
       { size: "100gm", price: 155 }
     ],
+    tagline: "Natural Herbal Immunity Booster Recommended by Ministry of AYUSH",
     description: "Natural health protection powder recommended by the Ministry of AYUSH. Strengthens body defense mechanisms and supports general respiratory wellness.",
+    benefits: [
+      "Fortifies immune response against viral pathogens and seasonal infections",
+      "Potent synergistic antioxidant blend of Tulsi, Dalchini, Sunthi & Krishna Marich",
+      "Supports general respiratory wellness and relieves throat discomfort",
+      "100% pure authentic formula as per official Ministry of AYUSH guidelines"
+    ],
     ingredients: "Tulsi, Dalchini, Sunthi, Krishna Marich",
     image: "images/ayush kwath 3/39c11c28-bded-44ee-90c3-75c4a6e7eab0.png",
     images: [
@@ -236,7 +315,16 @@ const defaultProducts = [
       { size: "200ml", price: 159 },
       { size: "400ml", price: 281 }
     ],
+    tagline: "A Tried and Tested Drug to Restore Women's Health",
     description: "A tried and tested drug to restore women's health. Multi-directional action over the body of women, re-establishes normal physiology in all respects, bestows absolute feminine health by natural medicines, corrects body imbalances without side or after effects, and is completely safe even if used for prolonged time. Balanced action of Ashoka, Amla, Punarnava, Vridhdaruk etc.",
+    benefits: [
+      "Multi-directional therapeutic action on the female reproductive system",
+      "Re-establishes normal physiological rhythms and regularizes menstrual cycle",
+      "Bestows absolute feminine vitality and relieves pelvic pain and distress",
+      "Corrects hormonal and metabolic imbalances without side or after-effects",
+      "Balanced formulation of Ashoka, Amla, Punarnava, Vridhdaruk, and Lodhra",
+      "Completely safe for prolonged administration"
+    ],
     ingredients: "Ashoka, Lodhra, Shatavari, Ashwagandha, Dashmoola",
     image: "images/m-28/15eb0dc6-8693-416e-8fa7-54ba94af1150.png",
     images: [
@@ -256,7 +344,14 @@ const defaultProducts = [
     variants: [
       { size: "30ml", price: 52 }
     ],
+    tagline: "Quick Relief from Discomfort — Herbal Digestant for Infants & Children",
     description: "Quick Relief from Discomfort situation — Herbal Digestant for Infants & Children. Treats indigestion, loss of appetite and dyspepsia, regulates peristalsis movement, acts as a carminative & bioavailability enhancer, and strengthens the digestive system of babies.",
+    benefits: [
+      "Fast acting relief from colic pain, abdominal distention, and flatulence",
+      "Treats infant indigestion, dyspepsia, and milk intolerance",
+      "Regulates natural peristalsis movement and prevents griping spasms",
+      "Acts as a gentle carminative and enhances intestinal bioavailability"
+    ],
     ingredients: "Dil Oil, Soya Oil, Pudina Satva, Sarjikakshara",
     image: "images/mini drops/2f1eab46-f1f2-4eb5-9b0a-df7e1bd8dd35.png",
     images: [
@@ -277,7 +372,14 @@ const defaultProducts = [
       { size: "25ml", price: 83 },
       { size: "50ml", price: 124 }
     ],
+    tagline: "For Quick Joints Pain Relief & Muscular Aches",
     description: "Soothing pain relief liniment for joint pain, muscle strain, sprains, backache, and rheumatic disorders. Promotes fast warming actions.",
+    benefits: [
+      "Rapid penetrating deep-action liniment for severe joint and muscular pain",
+      "Alleviates stiffness in arthritis, cervical spondylosis, lumbago, and sciatica",
+      "Relieves sprains, sports strains, frozen shoulder, and muscular fatigue",
+      "Fast warming effect increases local blood circulation to speed up recovery"
+    ],
     ingredients: "Gandhapura Oil, Nilgiri Oil, Maha Narayan Oil, Kapoor, Pudina Satva",
     image: "images/mobi. oil/5d0a7e29-da49-404e-89cd-d8d9cae37bd8.png",
     images: [
@@ -299,7 +401,14 @@ const defaultProducts = [
       { size: "100ml", price: 85 },
       { size: "200ml", price: 158 }
     ],
+    tagline: "Unique Blood Purifier for Clear, Glowing & Healthy Skin",
     description: "Natural blood purifying syrup that clears toxins, cleanses skin congestion, and checks pimples, acne, and recurring skin rashes.",
+    benefits: [
+      "Eliminates accumulated toxins and impurities from bloodstream and liver",
+      "Checks pimples, persistent acne, blemishes, and dark spots",
+      "Soothes and prevents recurrent boils, urticaria, eczema, and skin rashes",
+      "Promotes clean blood circulation for a radiant, blemish-free complexion"
+    ],
     ingredients: "Anantmool, Khadir, Neem, Manjistha, Gorakhmundi, Chirata",
     image: "images/rakto 3/a4d410e5-5931-4073-9f70-3c1a25b79020.png",
     images: [
@@ -319,7 +428,16 @@ const defaultProducts = [
       { size: "50ml", price: 54 },
       { size: "100ml", price: 90 }
     ],
+    tagline: "When Safety is Your Concern & Efficacy is Your Need",
     description: "The proven herbal antinauseant and antiemetic medicine (when safety is your concern and efficacy is your need). Highly effective, safe and gentle in all patients. Specially recommended in Hyperemesis gravidarum. With additional benefit of GINGER (as effective as Metoclopramide in managing nausea & vomiting). Free from drowsiness and extrapyramidal symptoms. Indicated in nausea & vomiting associated with any disease, travel and motion sickness, and morning sickness of pregnancy.",
+    benefits: [
+      "Proven herbal antinauseant and antiemetic medicine with high clinical efficacy",
+      "Specially recommended in morning sickness & Hyperemesis Gravidarum in pregnancy",
+      "Enriched with ginger, matching modern antiemetic efficacy naturally",
+      "Completely free from drowsiness, sedation, and extrapyramidal symptoms",
+      "Fast relief from motion sickness, travel nausea, and vomiting of diverse etiologies",
+      "Gentle and safe for infants, children, adults, and expectant mothers"
+    ],
     ingredients: "Elaichi, Pudina, Kapoor, Dalchini, Jaiphal, Nimbu",
     image: "images/vomitex/fca5280f-8a81-4343-b171-057f5ae84b09.png",
     images: [
@@ -338,7 +456,14 @@ const defaultProducts = [
     variants: [
       { size: "200ml", price: 160 }
     ],
+    tagline: "Herbal Memory Tonic for Cognitive Vitality & Focus",
     description: "Superb Ayurvedic cognitive brain tonic formulated to enhance memory retention, boost concentration, relieve mental stress, and support overall nervous system health.",
+    benefits: [
+      "Enhances cognitive recall, memory retention, concentration, and mental agility",
+      "Calms cerebral stress, anxiety, mental fatigue, and promotes restful sleep",
+      "Nourishes nervous tissues with Medhya Rasayanas like Brahmi and Shankhpushpi",
+      "Ideal mental tonic for students during exams, working professionals, and seniors"
+    ],
     ingredients: "Brahmi, Shankhpushpi, Ashwagandha, Jyotishmati, Jatamansi, Vacha",
     image: "images/Brain syrup/cd54a287-434a-4bc5-b797-67e33f6107c9.png",
     images: [
@@ -358,7 +483,14 @@ const defaultProducts = [
     variants: [
       { size: "30ml", price: 52 }
     ],
+    tagline: "Hepatoprotective and Hepatocorrective — Ideal Formula for Infants",
     description: "Hepatoprotective and Hepatocorrective — An ideal formula & unique remedy for liver disorders in infants. Restores normal liver functions, corrects many liver disorders, most valuable in toxic, viral & infective hepatitis and jaundice, effective in infantile cirrhosis of the liver, and improves the digestive system.",
+    benefits: [
+      "Specially calibrated pediatric formula for infantile liver disorders",
+      "Restores normal hepatic enzyme functions and liver metabolic capacity",
+      "Valuable in viral, toxic, and infective neonatal hepatitis & jaundice",
+      "Aids in pediatric liver cell defense and enhances digestive assimilation"
+    ],
     ingredients: "Bhringraj, Bhumi Amla, Kalmegh, Kutki, Punarnava, Giloy",
     image: "images/livero drops/bf4a698f-b089-415f-98bd-3031fde6f6cc.png",
     images: [
@@ -423,19 +555,22 @@ const Store = {
             }
           });
           
-          // Apply fallback images/dosage from default catalog if unassigned
+          // Apply fallback images/dosage/tagline/benefits from default catalog if unassigned
           freshProducts.forEach(p => {
             const match = defaultProducts.find(dp => dp.id === p.id);
             if (match) {
               const priceChanged = p.price !== match.price || !p.variants || JSON.stringify(p.variants) !== JSON.stringify(match.variants);
+              const detailsChanged = !p.tagline || !p.benefits || JSON.stringify(p.benefits) !== JSON.stringify(match.benefits);
               p.price = match.price;
               if (match.variants) p.variants = match.variants;
+              p.tagline = match.tagline;
+              p.benefits = match.benefits;
               if (!p.image) p.image = match.image;
               if (!p.images || p.images.length === 0) p.images = [...match.images];
               if (!p.dosage) p.dosage = match.dosage;
               if (match.description) p.description = match.description;
-              if (priceChanged && isFirebaseActive && db) {
-                db.collection('products').doc(p.id).set(p).catch(err => console.error("Firestore price sync error:", err));
+              if ((priceChanged || detailsChanged) && isFirebaseActive && db) {
+                db.collection('products').doc(p.id).set(p).catch(err => console.error("Firestore details sync error:", err));
               }
             }
           });
@@ -525,6 +660,8 @@ const Store = {
       if (match) {
         p.price = match.price;
         if (match.variants) p.variants = match.variants;
+        p.tagline = match.tagline;
+        p.benefits = match.benefits;
         if (!p.image) p.image = match.image;
         if (!p.images || p.images.length === 0) p.images = [...match.images];
         if (!p.dosage) {
@@ -1152,7 +1289,21 @@ function renderProductsStore() {
     return;
   }
 
-  productsContainer.innerHTML = filtered.map(prod => `
+  productsContainer.innerHTML = filtered.map(prod => {
+    const sizesBadge = prod.variants && prod.variants.length > 0
+      ? `<div class="detail-trigger" data-id="${prod.id}" style="font-size:0.75rem; color:var(--primary); background:rgba(67, 104, 80, 0.08); padding:0.25rem 0.5rem; border-radius:4px; margin-top:0.35rem; font-weight:600; cursor:pointer;">📦 Available: ${prod.variants.map(v => `${v.size} (₹${v.price})`).join(' • ')}</div>`
+      : '';
+    const taglineHtml = prod.tagline
+      ? `<p class="detail-trigger" data-id="${prod.id}" style="font-size:0.82rem; font-style:italic; color:var(--accent); margin:0.15rem 0 0.4rem 0; font-weight:600; line-height:1.35; cursor:pointer;">${prod.tagline}</p>`
+      : '';
+    let priceDisplay = `₹${prod.price}`;
+    if (prod.variants && prod.variants.length > 1) {
+      const minP = Math.min(...prod.variants.map(v => v.price));
+      const maxP = Math.max(...prod.variants.map(v => v.price));
+      priceDisplay = minP !== maxP ? `₹${minP} - ₹${maxP}` : `₹${minP}`;
+    }
+
+    return `
     <article class="product-card">
       <div class="product-img-wrapper detail-trigger" data-id="${prod.id}" style="cursor:pointer;">
         <img class="product-svg" src="${prod.image}" alt="${prod.title}">
@@ -1160,19 +1311,22 @@ function renderProductsStore() {
       </div>
       <div class="product-info">
         <h3 class="product-title detail-trigger" data-id="${prod.id}" style="cursor:pointer; transition: var(--transition-fast);">${prod.title}</h3>
+        ${taglineHtml}
         <p class="product-desc detail-trigger" data-id="${prod.id}" style="cursor:pointer;" title="${prod.description}">${prod.description}</p>
         <div class="product-ingredients-preview" style="font-size:0.75rem; color:var(--text-light); line-height:1.4;">
           <strong style="color:var(--primary);">Active Herbs:</strong> ${prod.ingredients}
         </div>
+        ${sizesBadge}
         <div class="product-meta">
-          <span class="product-price">₹${prod.price}</span>
+          <span class="product-price">${priceDisplay}</span>
           <button class="btn-primary btn-add-to-cart" data-id="${prod.id}" style="padding:0.45rem 1rem; font-size:0.85rem; z-index:5;">
             🛒 Add to Cart
           </button>
         </div>
       </div>
     </article>
-  `).join('');
+  `;
+  }).join('');
 
   // Attach Add-to-Cart listeners
   document.querySelectorAll('.btn-add-to-cart').forEach(btn => {
@@ -1500,6 +1654,26 @@ window.openProductDetailModal = function(productId) {
   document.getElementById('detail-ingredients').innerText = prod.ingredients;
   document.getElementById('detail-dosage').innerText = prod.dosage || "Take 1 to 2 teaspoonfuls (5-10 ml) twice daily after meals, or as directed by a physician.";
   document.getElementById('detail-qty-value').innerText = activeDetailQty;
+
+  // Bind Tagline
+  const taglineEl = document.getElementById('detail-tagline');
+  if (taglineEl) {
+    taglineEl.innerText = prod.tagline || '';
+    taglineEl.style.display = prod.tagline ? 'block' : 'none';
+  }
+
+  // Bind Key Indications & Benefits list
+  const benefitsWrapper = document.getElementById('detail-benefits-wrapper');
+  const benefitsList = document.getElementById('detail-benefits-list');
+  if (benefitsWrapper && benefitsList) {
+    if (prod.benefits && prod.benefits.length > 0) {
+      benefitsWrapper.style.display = 'block';
+      benefitsList.innerHTML = prod.benefits.map(b => `<li style="margin-bottom:0.25rem;">${b}</li>`).join('');
+    } else {
+      benefitsWrapper.style.display = 'none';
+      benefitsList.innerHTML = '';
+    }
+  }
 
   // Setup size variants selector
   const sizeOptionsWrapper = document.getElementById('detail-size-options-wrapper');

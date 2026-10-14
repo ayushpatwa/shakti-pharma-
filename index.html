@@ -6,7 +6,7 @@
   <title>The Shakti Pharma | Premium Ayurvedic Medicines</title>
   <meta name="description" content="Manufacturers of premium Ayurvedic medicines since 1974 in Kasganj, UP. Explore our range of herbal tonics, cough syrups, and natural remedies.">
   <link rel="icon" type="image/gif" href="images/logo.gif">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.1">
 </head>
 <body>
 
@@ -847,10 +847,19 @@
             <div>
               <span id="detail-category" class="product-badge detail-category-badge">Category</span>
               <h2 id="detail-title" class="brand-font detail-title-text">Product Title</h2>
+              <p id="detail-tagline" style="font-size:0.95rem; font-style:italic; color:var(--accent); margin:0.25rem 0 0.5rem 0; font-weight:600;"></p>
               <div id="detail-price" class="detail-price-text">₹0.00</div>
             </div>
             
             <p id="detail-desc" class="detail-description">Description goes here...</p>
+
+            <!-- Key Indications & Benefits Bulleted Section -->
+            <div id="detail-benefits-wrapper" class="detail-meta-section" style="border-top: 1px dashed var(--border-color); padding-top:0.6rem;">
+              <strong style="color:var(--primary); display:block; margin-bottom:0.4rem;">Key Indications & Benefits:</strong>
+              <ul id="detail-benefits-list" style="margin:0; padding-left:1.25rem; font-size:0.85rem; color:var(--text-light); line-height:1.6;">
+                <!-- Populated dynamically via JS -->
+              </ul>
+            </div>
 
             <!-- Quantity Option selector (Hidden by default, shown if variants exist) -->
             <div id="detail-size-options-wrapper" class="detail-meta-section" style="display:none; border-top: 1px dashed var(--border-color); padding-top:0.6rem;">
@@ -949,6 +958,6 @@
 
 
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3.1"></script>
 </body>
 </html>
